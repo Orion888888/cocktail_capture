@@ -1,19 +1,27 @@
-<html>
- <head>
-    <meta charset="UT8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
- </head>
- <body>
     <main>
         <div class="card">
             <div class="cocktail-name">
-                    <h1>Cocktail Name</h1>
-                    <p>Description</p>
+                <h1>{{{cocktail.name}}}</h1>
             </div>
-            
+            <div class="">
+                <img src="/images/cherry_gin.jpeg" alt="cherry_gin">
+            </div>
+            <div class="cocktail-ingredients">
+                <h2>Ingredients</h2>
+                <p>                    
+                    <ol>
+                        <li>1 and 1/2 oz. gin (I used the combination of Empress 1908 and strawberry gin)</li>
+                        <li>2 oz. cherry liquor</li> 
+                        <li>2/3 – 1 oz. freshly squeezed lemon juice</li>
+                        <li>a handful of ice</li>    
+                        <li>mint and cherries, for garnish</li>
+                    </ol>
+                </p>
+            </div>
+
+            <button class="button">Cheers!</button>
         </div>
     </main>
- </body>
+</body>
 
 </html>
