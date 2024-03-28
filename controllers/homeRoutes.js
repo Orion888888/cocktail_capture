@@ -4,7 +4,12 @@ const { Recipes } = require('../models');
 
 // Route for default homepage showing 15 most recently posted recipes
 router.get('/', async (req, res) => {
- try {/* 
+ try {
+  if (!req.session.logged_in) {
+    res.redirect('/login');
+    return;
+  }
+  /* 
     // Get 15 most recently posted recipes by the community
     const recipesData = await Recipes.findAll({
       attributes: ['id', 'name', 'date_created'],
