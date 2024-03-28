@@ -11,12 +11,12 @@ Recipes.init(
       primaryKey: true,
       autoIncrement: true
     },
-    description: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    name: {
-      type: DataTypes.STRING(100),
+    description: {
+      type: DataTypes.STRING,
       allowNull: false
     },
     //image: {
@@ -25,7 +25,10 @@ Recipes.init(
     //},
     users_id: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      references: {
+        model: 'users',
+        key: 'id',
+      }
     },
     date_created: {
       type: DataTypes.DATE,

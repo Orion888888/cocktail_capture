@@ -1,10 +1,12 @@
 [
   {
     "name": "Jonny in the Bathtub",
-    "description": "In the most unassuming cup you have, mix fridgerator temperature ALDI brand orange juice with Blackheart Spiced Rum (though orange juice and spiced rum could be from other brands). Ratio is to taste, but make it strong. Enjoy!"
+    "description": "In the most unassuming cup you have, mix fridgerator temperature ALDI brand orange juice with Blackheart Spiced Rum (though orange juice and spiced rum could be from other brands). Ratio is to taste, but make it strong. Enjoy!",
+    "users_id": 3
   },
   {
-    "name": "Means to an End",
-    "description": "Mix your favoriate Waterloo sparkling water with your favorite brand of vodka. Best had late at night."
+    "name": "A Means to an End",
+    "description": "Mix your favoriate Waterloo sparkling water with your favorite brand of vodka. Best had late at night.",
+    "users_id": 3
   }
 ]
