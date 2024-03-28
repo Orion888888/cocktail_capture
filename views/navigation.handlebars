@@ -17,7 +17,7 @@
     <div>
         <img class="w-16" src="https://cdn-icons-png.flaticon.com/512/5968/5968204.png" alt="...">
     </div>
-    <div class="md: static absolute bg-black md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5">
+    <div class="nav-links md: static absolute bg-black md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5">
         <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
             <li>
                 <a class="hover:text-gray-500" href="#">Profile</a>
@@ -42,9 +42,10 @@
 </header>
 
 <script>
+    const navLinks = document.querySelector('.nav-links');
     function onToggleMenue(e) {
-        const menue = document.querySelector('.menue');
-        menue.classList.toggle('top-[-100%]');
+        e.name = e.name === 'menu' ? 'close' : 'menu';
+        navLinks.classList.toggle('top-[9%]');
     }
 </script>
 
