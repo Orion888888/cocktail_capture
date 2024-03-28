@@ -1,13 +1,18 @@
 const express = require('express');
 const router = express.Router();
 
-//Route to render the cart page
-router.get('/', (req, res) => {
-    //retrieving user cart items from database
-    const cartItems = [];
-
-    //Render the 'cart' template and pass the cart items as data
-    res.render('cart', {cartItems});
+//Route to add item to cart
+router.post('/:drinkId', async (req, res) => {
+    const drinkId = req.params.drinkId;
+    try {
+        const cartItem = await CartItem.create({ userId: req.session.user_id, drinkId });
+    
+    //success response
+    res.sendStatus(200);
+    } catch (error) {
+        console.error('Error adding item to cart:', error);
+        res.sendStatus(500);
+    }
 });
 
 module.exports = router;

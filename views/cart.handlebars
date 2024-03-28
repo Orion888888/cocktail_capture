@@ -2,26 +2,31 @@
     <title>My Bar</title>
 </head>
 <body>
-{{#each cartItems}}
+    {{#each cartItems}}
         <div class="card">
             <div class="cocktail-name">
                 <div>
                     <h1 class="card-heading">{{this.strDrink}}</h1>
                 </div>
-
             </div>
             
-            <!-- section of the card that holds the image, button, and recipe -->
+            <!-- Section of the card that holds the image, button, and recipe -->
             <div class="cocktail-ingredients">
                 <div class="cocktail-image">
                     <img src="{{this.strDrinkThumb}}" alt="{{this.strDrink}}">
                 </div>
                 <h2 class="card-heading">Ingredients</h2>
-                <li class="list-group-item">{{ this.measure }} {{ this.ingredient }}</li>
+                <ul class="list-group list-group-flush">
+                    <!-- Iterate over the ingredients and measures -->
+                    {{#each this.ingredients}}
+                        <li class="list-group-item">{{this.measure}} {{this.ingredient}}</li>
+                    {{/each}}
+                </ul>
                 <p class="recipe">Recipe: {{this.strInstructions}}</p>
 
-                {{!-- removing item from barcart --}}
-                <button class="remove-btn btn btn-danger" data-drink-id="{{ idDrink }}">Remove from Favorites</button>
+                <!-- Removing item from bar cart -->
+                <button class="remove-btn btn btn-danger" data-drink-id="{{this.idDrink}}">Remove from Favorites</button>
             </div>
-{{/each}}
+        </div>
+    {{/each}}
 </body>
