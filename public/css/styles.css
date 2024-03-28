@@ -97,7 +97,7 @@ body {
 }
 
 /* button attributes */
-.button {
+.add-to-cart-btn {
     padding: 1em;
     background: var(--gradient);
     color: var(--clr-neutral-100);
@@ -111,8 +111,8 @@ body {
 }
 
 /* changes the hover of the button */
-.button:hover,
-.button:focus {
+.add-to-cart-btn:hover,
+.add-to-cart-btn:focus {
     background-size: 200%;
     scale: 1.05;
 }
