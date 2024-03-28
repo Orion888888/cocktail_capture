@@ -8,15 +8,17 @@
    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
      <link rel="stylesheet" href="/css/reset.css"> 
      <link rel="stylesheet" href="/css/styles.css"> 
+     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
 <header class="bg-white">
-<nav class="flex justify-between items-center 2-[92%]">
+<nav class="flex justify-between items-center 2-[92%] mx-auto">
     <div>
         <img class="w-16" src="https://cdn-icons-png.flaticon.com/512/5968/5968204.png" alt="...">
     </div>
-    <div class="absolute bg-white min-h">
-        <ul class="flex md:flex-row flex-col items-center gap-[4vw]">
+    <div class="md: static absolute bg-black md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5">
+        <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8">
             <li>
                 <a class="hover:text-gray-500" href="#">Profile</a>
             </li>
@@ -26,14 +28,24 @@
             <li>
                 <a class="hover:text-gray-500" href="#">Bar</a>
             </li>
-            <div>
+        </ul>
+    </div>
+            <div class="flex items-center gap-6">
                 <button class="bg-[#a6c1ee] text-white px-5 py2">Login</button>
+                <ion-icon onclick="onToggleMenue(this)" name="menu-outline" class="text-3xl cursor-pointer md:hidden"></ion-icon>
             </div>
             <div>
                 <button class="bg-[#a6c1ee] text-white px-5 py2">Logout</button>
             </div>
-        </ul>
-    </div>
+
 </nav>
 </header>
+
+<script>
+    function onToggleMenue(e) {
+        const menue = document.querySelector('.menue');
+        menue.classList.toggle('top-[-100%]');
+    }
+</script>
+
 </html>
