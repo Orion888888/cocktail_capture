@@ -4,7 +4,7 @@ const { Recipes } = require('../models');
 
 // Route for default homepage showing 15 most recently posted recipes
 router.get('/', async (req, res) => {
-  try {
+ try {/* 
     // Get 15 most recently post recipes by the community
     const recipesData = await Recipes.findAll({
       attributes: ['id', 'title'],
@@ -17,9 +17,9 @@ router.get('/', async (req, res) => {
     // Serialize data so the template can read it
     const recipes = recipesData.map((post) => post.get({ plain: true }));
 
-    // Pass serialized data and session flag into template
+    // Pass serialized data and session flag into template */
     res.render('homepage', {
-      recipes,
+      //recipes,
       logged_in: req.session.logged_in
     });
   } catch (err) {
