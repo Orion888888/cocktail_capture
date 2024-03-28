@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Recipes } = require('../models');
+const axios = require('axios');
 //const withAuth = require('../utils/auth');
 
 // Route for default homepage showing 15 most recently posted recipes
@@ -30,6 +31,18 @@ router.get('/', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+router.get ("/feed", async (req,res) => {
+  try {
+    const recipeData = await axios.get('http://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
+    const {drinks} = recipeData.data
+    
+    // console.log(recipes.data[0])
+    res.render("feed", {drinks, logged_in:req.session.logged_in})
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 // Route for the login screen
 router.get('/login', (req, res) => {
