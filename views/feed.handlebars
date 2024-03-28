@@ -14,7 +14,7 @@
                 </div>
                 <h2 class="card-heading">Ingredients</h2>
                 <p class="recipe">Recipe: {{drink.strInstructions}}</p>
-                <button class="button" data-id="{{drink.idDrink}}" href="/api/recipes/{{drink.idDrink}}">Add To My Bar</button>
+                <button class="add-to-cart-btn" data-id="{{drink.idDrink}}" href="/api/recipes/{{drink.idDrink}}">Add To My Bar</button>
             </div>
 
             <!-- section of the page that will hold the star rating bar -->
@@ -50,4 +50,5 @@
         </div>
 
         </div>
+        <script src="/public/js/cart.js"></script>
 {{/each}}

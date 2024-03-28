@@ -17,9 +17,13 @@
                 </div>
                 <h2 class="card-heading">Ingredients</h2>
                 <ul class="list-group list-group-flush">
-                    <!-- Iterate over the ingredients and measures -->
-                    {{#each this.ingredients}}
-                        <li class="list-group-item">{{this.measure}} {{this.ingredient}}</li>
+                    <!-- Iterate over ingredients and measures -->
+                    {{#each this}}
+                        {{#if (and (startsWith @key "strIngredient") (this ../this))}}
+                            {{#if (this ../this)}}
+                                <li class="list-group-item">{{lookup ../this @key}} {{lookup ../this (replace @key "Ingredient" "Measure")}}</li>
+                            {{/if}}
+                        {{/if}}
                     {{/each}}
                 </ul>
                 <p class="recipe">Recipe: {{this.strInstructions}}</p>
