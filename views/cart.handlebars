@@ -1,0 +1,27 @@
+<head>
+    <title>My Bar</title>
+</head>
+<body>
+{{#each cartItems}}
+        <div class="card">
+            <div class="cocktail-name">
+                <div>
+                    <h1 class="card-heading">{{this.strDrink}}</h1>
+                </div>
+
+            </div>
+            
+            <!-- section of the card that holds the image, button, and recipe -->
+            <div class="cocktail-ingredients">
+                <div class="cocktail-image">
+                    <img src="{{this.strDrinkThumb}}" alt="{{this.strDrink}}">
+                </div>
+                <h2 class="card-heading">Ingredients</h2>
+                <li class="list-group-item">{{ this.measure }} {{ this.ingredient }}</li>
+                <p class="recipe">Recipe: {{this.strInstructions}}</p>
+
+                {{!-- removing item from barcart --}}
+                <button class="remove-btn btn btn-danger" data-drink-id="{{ idDrink }}">Remove from Favorites</button>
+            </div>
+{{/each}}
+</body>

@@ -6,21 +6,17 @@
                 </div>
 
             </div>
+            
             <!-- section of the card that holds the image, button, and recipe -->
             <div class="cocktail-ingredients">
                 <div class="cocktail-image">
                     <img src="{{drink.strDrinkThumb}}" alt="{{drink.strDrink}}">
                 </div>
                 <h2 class="card-heading">Ingredients</h2>
-                <p class="recipe">Recipe:
-                  In the shaker, combine the gin, cherry liqueur, lemon juice (start with 2/3 oz.), 
-                  and ice and shake vigorously for about 30 seconds. Try and adjust the flavour by 
-                  adding more lemon juice or even spirits, if desired. Filter if desired (for a stronger version) 
-                  or serve on the rocks. If serving without ice, you might want to top it with a little bit tonic / water, 
-                  if it’s too strong. Garnish as desired and enjoy!
-                </p>
+                <p class="recipe">Recipe: {{drink.strInstructions}}</p>
                 <button class="button" data-id="{{drink.idDrink}}" href="/api/recipes/{{drink.idDrink}}">Add To My Bar</button>
             </div>
+
             <!-- section of the page that will hold the star rating bar -->
 
         <div class="rating-bar">
