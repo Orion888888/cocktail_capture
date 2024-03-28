@@ -10,6 +10,7 @@ module.exports = {
     './tailwind.config.js',
     './views/layouts/main.handlebars',
     './views/homepage.handlebars',
-    './views/ingredients.handlebars'
+    './views/ingredients.handlebars',
+    './views/login.handlebars',
   ],
 }
