@@ -1,0 +1,36 @@
+<head>
+    <title>My Bar</title>
+</head>
+<body>
+    {{#each cartItems}}
+        <div class="card">
+            <div class="cocktail-name">
+                <div>
+                    <h1 class="card-heading">{{this.strDrink}}</h1>
+                </div>
+            </div>
+            
+            <!-- Section of the card that holds the image, button, and recipe -->
+            <div class="cocktail-ingredients">
+                <div class="cocktail-image">
+                    <img src="{{this.strDrinkThumb}}" alt="{{this.strDrink}}">
+                </div>
+                <h2 class="card-heading">Ingredients</h2>
+                <ul class="list-group list-group-flush">
+                    <!-- Iterate over ingredients and measures -->
+                    {{#each this}}
+                        {{#if (and (startsWith @key "strIngredient") (this ../this))}}
+                            {{#if (this ../this)}}
+                                <li class="list-group-item">{{lookup ../this @key}} {{lookup ../this (replace @key "Ingredient" "Measure")}}</li>
+                            {{/if}}
+                        {{/if}}
+                    {{/each}}
+                </ul>
+                <p class="recipe">Recipe: {{this.strInstructions}}</p>
+
+                <!-- Removing item from bar cart -->
+                <button class="remove-btn btn btn-danger" data-drink-id="{{this.idDrink}}">Remove from Favorites</button>
+            </div>
+        </div>
+    {{/each}}
+</body>

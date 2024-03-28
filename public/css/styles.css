@@ -97,7 +97,7 @@ body {
 }
 
 /* button attributes */
-.button {
+.add-to-cart-btn {
     padding: 1em;
     background: var(--gradient);
     color: var(--clr-neutral-100);
@@ -111,8 +111,8 @@ body {
 }
 
 /* changes the hover of the button */
-.button:hover,
-.button:focus {
+.add-to-cart-btn:hover,
+.add-to-cart-btn:focus {
     background-size: 200%;
     scale: 1.05;
 }
@@ -121,4 +121,53 @@ body {
 .fill {
     fill: yellow; 
   }
+
+/* navigation styling */
+
+header nav ul {
+    display:flex;
+    justify-content: end;
+    gap:2vw;
+    list-style-type: none;
+    margin-right: 2vw;
+    margin-left: 2vw;
+  }
+  
+  .nav-button{
+    padding:1em;
+    margin: 0;
+    width: 200px;
+    height: 60px;
+    text-align: center;
+    top: 240px;
+    left: 260px;
+    position: left;
+    border: 3px, dotted #555;
+    border-radius: 30px;
+    transition-duration: 3s;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .5);
+    background-color: linear-gradient(90deg, #020024 0%, #090979 35%, #00d4ff 100%);;
+    font-weight: bold;
+    /* font-family: 'Courier New', Courier, monospace; */
+    font-size: larger;
+    font-weight: lighter;
+    
+  }
+  .nav-button:hover{
+    cursor:pointer;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .5);
+    transform: scale(1.2);
+    color: aliceblue;
+  }
+@media (min-width: 768px) {
+    .md\:static {
+        position: static;
+    }
+    .md\:w-auto {
+        width: auto;
+    }
+    .md\:flex-row {
+        flex-direction: row;
+    }
+}
   
