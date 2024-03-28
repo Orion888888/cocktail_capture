@@ -12,5 +12,6 @@ module.exports = {
     './views/homepage.handlebars',
     './views/ingredients.handlebars',
     './views/login.handlebars',
+    './views/signup.handlebars'
   ],
 }
