@@ -5,11 +5,10 @@ const { Recipes } = require('../models');
 // Route for default homepage showing 15 most recently posted recipes
 router.get('/', async (req, res) => {
  try {/* 
-    // Get 15 most recently post recipes by the community
+    // Get 15 most recently posted recipes by the community
     const recipesData = await Recipes.findAll({
-      attributes: ['id', 'title'],
+      attributes: ['id', 'name', 'date_created'],
       include: [{ model: Users, attributes: ['username'] }],
-      include: [{ model: Like_recipes, attributes: ['star_value'] }],
       order: [['date_created', 'DESC']],
       limit: 15
     });
