@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Recipes, Liked_recipes } = require('../models');
+const { Users, Recipes, Liked_recipes } = require('../models');
 const withAuth = require('../utils/auth');
 
 // Default profile route showing most recently created recipes
@@ -7,11 +7,10 @@ router.get('/', withAuth, async (req, res) => {
     try {
       // Get all recipes created by logged in user
       const recipesData = await Recipes.findAll({
-        attributes: ['id', 'title'],
-        include: [{ model: Users, attributes: ['id'] }],
+        attributes: ['id', 'name', 'date_created'],
         include: [{ model: Liked_recipes, attributes: ['star_value'] }],
         order: [['date_created', 'DESC']],
-        where: { user_id: req.session.user_id }
+        where: { users_id: req.session.user_id }
       });
   
       // Serialize data so the template can read it
@@ -27,15 +26,15 @@ router.get('/', withAuth, async (req, res) => {
     }
   });
 
+  /*
   router.get('/liked', withAuth, async (req, res) => {
     try {
       // Get 15 most recently post recipes by the community
       const recipesData = await Liked_recipes.findAll({
-        attributes: ['id', 'title'],
-        include: [{ model: Recipes, attributes: ['id', 'title', 'users_id'] }],
+        include: [{ model: Recipes, attributes: ['id', 'name', 'users_id', 'date_created'] }],
         include: [{ model: Users, attributes: ['username'] }],
         order: [['date_created', 'DESC']],
-        where: { user_id: req.session.user_id }
+        where: { users_id: req.session.user_id }
       });
   
       // Serialize data so the template can read it
@@ -50,12 +49,14 @@ router.get('/', withAuth, async (req, res) => {
       res.status(500).json(err);
     }
   });
+  */
 
+  /*
   router.get('/list', withAuth, async (req, res) => {
     try {
       // Get 15 most recently post recipes by the community
       const recipesData = await Shopping_list.findAll({
-        include: [{ model: Recipes, attributes: ['id', 'title'] }],
+        include: [{ model: Recipes, attributes: ['id', 'name'] }],
         include: [{ model: Users, attributes: ['username'] }],
         order: [['date_created', 'DESC']],
         where: { user_id: req.session.user_id }
@@ -72,6 +73,7 @@ router.get('/', withAuth, async (req, res) => {
     } catch (err) {
       res.status(500).json(err);
     }
-  });
+  }); 
+  */
 
 module.exports = router;
