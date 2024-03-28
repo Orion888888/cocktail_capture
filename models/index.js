@@ -2,7 +2,7 @@ const Users = require('./Users');
 const Recipes = require('./Recipes');
 const Liked_recipes = require('./Liked_recipes');
 const Ingredients = require('./Ingredients');
-const Recipe_ingredients = require('./Recipe_ingredients');
+const Recipes_ingredients = require('./Recipes_ingredients.js');
 const Shopping_list = require('./Shopping_list');
 const Shopping_list_recipes = require('./Shopping_list_recipes.js');
 
@@ -33,9 +33,9 @@ Users.belongsToMany(Recipes, { through: Liked_recipes, foreignKey: { name: 'user
 
 
 // Recipe_ingredients associtions
-Ingredients.belongsToMany(Recipes, { through: Recipe_ingredients, foreignKey: { name: 'ingredients_id', type: DataTypes.INTEGER } });
+Ingredients.belongsToMany(Recipes, { through: Recipes_ingredients, foreignKey: { name: 'ingredients_id', type: DataTypes.INTEGER } });
 
-Recipes.belongsToMany(Ingredients, { through: Recipe_ingredients, foreignKey: { name: 'recipes_id', type: DataTypes.INTEGER } });
+Recipes.belongsToMany(Ingredients, { through: Recipes_ingredients, foreignKey: { name: 'recipes_id', type: DataTypes.INTEGER } });
 
 
 // Shopping_list_recipes associations
@@ -49,7 +49,7 @@ module.exports = {
     Recipes,
     Liked_recipes,
     Ingredients,
-    Recipe_ingredients,
+    Recipes_ingredients,
     Shopping_list,
     Shopping_list_recipes
 };

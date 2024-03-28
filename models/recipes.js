@@ -15,7 +15,7 @@ Recipes.init(
       type: DataTypes.STRING,
       allowNull: false
     },
-    title: {
+    name: {
       type: DataTypes.STRING(100),
       allowNull: false
     },
