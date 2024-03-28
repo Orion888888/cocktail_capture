@@ -1,25 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-   <link href="https://cdn.tailwindcss.com" rel="stylesheet">
-    
-     <link rel="stylesheet" href="/css/reset.css"> 
-     <link rel="stylesheet" href="/css/styles.css"> 
-
     <title>Cocktail Capture</title>
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
+    <header>
+        <nav class="nav-bar">
+            <ul>
+                <li>
+                    {{!-- <img class="" src="/images/drinks_nav_image.jpeg" alt="..."> --}}
+
+                    <a href="#"><button class="nav-button" id="about-me">Profile</button></a>
+                 
+                    <a href="#work"><button class= "nav-button" id="work">Menu</button></a>
+               
+                    <a href="#contact"><button class= "nav-button" id="contact">Bar</button></a>
+                   
+                    <a href="/logout" id="logout" class="nav-button">Logout</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
         {{{body}}}
     </main>
+
     
-    <a href="/logout" id="logout">LOGOUT</a>
     <script src="../js/logout.js"></script>
+
 </body>
 
 </html>
