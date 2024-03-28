@@ -1,10 +1,10 @@
-const Users = require('./Users.js');
-const Recipes = require('./Recipes.js');
-const Liked_recipes = require('./Liked_recipes.js');
-const Ingredients = require('./Ingredients.js');
-const Recipes_ingredients = require('./Recipes_ingredients.js');
-const Shopping_list = require('./Shopping_list.js');
-const Shopping_list_recipes = require('./Shopping_list_recipes.js');
+const Users = require('./Users');
+const Recipes = require('./Recipes');
+const Liked_recipes = require('./Liked_recipes');
+const Ingredients = require('./Ingredients');
+const Recipes_ingredients = require('./Recipes_ingredients');
+const Shopping_list = require('./Shopping_list');
+const Shopping_list_recipes = require('./Shopping_list_recipes');
 
 // Needed to define the foreign key types for the many to many associations
 const { DataTypes } = require('sequelize');
