@@ -1,11 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
+class Shopping_list extends Model {}
 
-class shopping_list extends Model {}
-
-
-shopping_list.init(
+Shopping_list.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -15,11 +13,10 @@ shopping_list.init(
     },
     users_id: {
       type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    recipes_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false
+      references: {
+        model: 'users',
+        key: 'id',
+      }
     }
   },
   {
@@ -31,4 +28,4 @@ shopping_list.init(
   }
 );
 
-module.exports = shopping_list;
+module.exports = Shopping_list;

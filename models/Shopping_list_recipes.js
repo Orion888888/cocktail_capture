@@ -1,24 +1,15 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class recipe_ingredients extends Model {}
+class Shopping_list_recipes extends Model {}
 
-
-recipe_ingredients.init(
+Shopping_list_recipes.init(
   {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
-    },
-    recipes_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    ingredients_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false
     }
   },
   {
@@ -26,8 +17,8 @@ recipe_ingredients.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'recipe_ingredients'
+    modelName: 'posts',
   }
 );
 
-module.exports = recipe_ingredients;
+module.exports = Shopping_list_recipes;

@@ -1,25 +1,15 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
+class Liked_recipes extends Model {}
 
-class liked_recipes extends Model {}
-
-
-liked_recipes.init(
+Liked_recipes.init(
   {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
-    },
-    users_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    recipes_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false
     },
     star_value: {
         type: DataTypes.INTEGER,
@@ -35,4 +25,4 @@ liked_recipes.init(
   }
 );
 
-module.exports = liked_recipes;
+module.exports = Liked_recipes;
