@@ -32,13 +32,13 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get ("/feed", async (req,res) => {
+router.get ("/menu", async (req,res) => {
   try {
     const recipeData = await axios.get('http://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
     const {drinks} = recipeData.data
     
     // console.log(recipes.data[0])
-    res.render("feed", {drinks, logged_in:req.session.logged_in})
+    res.render("menu", {drinks, logged_in:req.session.logged_in})
   } catch (error) {
     console.log(error)
   }
