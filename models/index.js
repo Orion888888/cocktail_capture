@@ -1,9 +1,9 @@
-const Users = require('./Users4');
-const Recipes = require('./Recipes4');
-const Liked_recipes = require('./Liked_recipes4');
-const Ingredients = require('./Ingredients4');
+const Users = require('./Users');
+const Recipes = require('./Recipes');
+const Liked_recipes = require('./Liked_recipes');
+const Ingredients = require('./Ingredients');
 const Recipes_ingredients = require('./Recipes_ingredients');
-const Shopping_list = require('./Shopping_list4');
+const Shopping_list = require('./Shopping_list');
 const Shopping_list_recipes = require('./Shopping_list_recipes');
 
 // Needed to define the foreign key types for the many to many associations
