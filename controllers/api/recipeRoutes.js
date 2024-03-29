@@ -8,7 +8,7 @@ router.post('/', withAuth, async (req, res) => {
     try {
       const newRecipe = await Recipes.create({
         ...req.body,
-        user_id: req.session.user_id
+        users_id: req.session.user_id
       });
       res.status(200).json(newRecipe);
     } catch (err) {
