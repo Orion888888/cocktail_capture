@@ -12,12 +12,16 @@ router.get('/', withAuth, async (req, res) => {
       //   order: [['date_created', 'DESC']],
       //   where: { users_id: req.session.user_id }
       // });
-      const user = await Users.findByPk(req.session.user_id, {include:[Recipes]})
+
+      const user = await Users.findByPk(req.session.user_id, {include:[{model: Recipes}]})
         console.log(user);
   
+        const recipes = user.recipes.map((recipe) => recipe.get({ plain: true }));
+        console.log("***", recipes);
+
       // Pass serialized data and session flag into template
       res.render('profile', {
-        user,
+        recipes,
         logged_in: req.session.logged_in
       });
     } catch (err) {
@@ -25,7 +29,12 @@ router.get('/', withAuth, async (req, res) => {
     }
   });
 
-  
+
+  router.get('/create', withAuth, (req, res) => {
+    res.render('create', {
+      logged_in: req.session.logged_in
+    });
+  });
 
   /*
   router.get('/liked', withAuth, async (req, res) => {

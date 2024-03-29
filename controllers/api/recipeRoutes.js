@@ -1,6 +1,20 @@
 const router = require('express').Router();
 const axios = require('axios');
-const { User } = require('../../models');
+const { Recipes } = require('../../models');
+const withAuth = require('../../utils/auth');
+
+//api request to create a new recipe
+router.post('/', withAuth, async (req, res) => {
+    try {
+      const newRecipe = await Recipes.create({
+        ...req.body,
+        user_id: req.session.user_id
+      });
+      res.status(200).json(newRecipe);
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  });
 
 router.post('/:drinkId', async (req, res) => {
     try {
