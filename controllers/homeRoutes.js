@@ -31,23 +31,18 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get ("/menu", async (req,res) => {
+// Function to fetch drinks for a specific letter
+async function fetchDrinksByLetter(letter) {
   try {
-    const recipeData = await axios.get('http://www.thecocktaildb.com/api/json/v1/1/random.php')
-    const { drinks } = recipeData.data
-    const myDrinkArray = [] 
-    for(let i = 0; i < 10; i++) {
-      // Access random drink from the drinks array
-      const randomDrink = drinks[Math.floor(Math.random() * drinks.length)]
-      myDrinkArray.push(randomDrink)
-    }
-    // Render the menu template with drink data
-    res.render("menu", { myDrinkArray, logged_in: req.session.logged_in })
+    const response = await axios.get(`http://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`);
+    return response.data.drinks;
   } catch (error) {
-    console.log(error)
-    res.status(500).send("Error fetching drink data")
+    console.error(`Error fetching drinks for letter ${letter}: ${error.message}`);
+    return [];
   }
-})
+}
+
+
 
 
 // Route for the login screen
