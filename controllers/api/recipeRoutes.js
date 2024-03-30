@@ -4,19 +4,23 @@ const { Recipes } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 //api request to create a new recipe
-router.post('/', withAuth, async (req, res) => {
-  try {
-    const newRecipe = await Recipes.create({
-      ...req.body,
-      users_id: req.session.user_id
-    });
-    res.status(200).json(newRecipe);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
-
-
+router.post('/', withAuth async (req, res) => {
+    try {
+      const newRecipe = await Recipes.create({
+        idDrink: "",
+        strDrink: req.body.strDrink,
+        description: req.body.description,
+        strInstructions: req.body.recipeInstructions,
+        strIngredients: "test",
+        user_id: req.session.user_id
+      });
+      console.log(newRecipe);
+      res.status(200).json(newRecipe);
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  });
+  
 // Route to update recipe
 router.put('/:id', withAuth, async (req, res) => {
   try {

@@ -31,17 +31,33 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get ("/menu", async (req,res) => {
+router.get("/menu", async (req, res) => {
   try {
-    const recipeData = await axios.get('http://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
-    const {drinks} = recipeData.data
-    
-    // console.log(recipes.data[0])
-    res.render("menu", {drinks, logged_in:req.session.logged_in})
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    const allDrinks = [];
+
+    // Fetch drinks for each letter of the alphabet
+    for (const letter of alphabet) {
+      const recipeData = await axios.get(`http://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`);
+      const { drinks } = recipeData.data;
+
+      // Push 10 random drinks for each letter to allDrinks array
+      if (drinks) {
+        for (let i = 0; i < 10; i++) {
+          const randomDrink = drinks[Math.floor(Math.random() * drinks.length)];
+          allDrinks.push(randomDrink);
+        }
+      }
+    }
+
+    res.render("menu", { myDrinkArray: allDrinks, logged_in: req.session.logged_in });
   } catch (error) {
-    console.log(error)
+    console.error(error);
+    res.status(500).send("Error fetching drink data");
   }
-})
+});
+
+
 
 // Route for the login screen
 router.get('/login', (req, res) => {

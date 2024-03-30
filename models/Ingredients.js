@@ -14,7 +14,14 @@ Ingredients.init(
     name: {
       type: DataTypes.STRING,
       allowNull: false
-    }
+    },
+    recipe_id:  {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'recipes',
+        key: 'id',
+      }
+    },
   },
   {
     sequelize,

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Users, Recipes, Liked_recipes } = require('../models');
+const { Users, Recipes, Liked_recipes, Ingredients } = require('../models');
 const withAuth = require('../utils/auth');
 
 // Default profile route showing most recently created recipes
@@ -7,10 +7,11 @@ router.get('/', withAuth, async (req, res) => {
     try {
       // Get all recipes created by logged in user
       const recipesData = await Recipes.findAll({
-      attributes: ['id', 'name', 'description', 'date_created'],
+        include: [Ingredients],
+      attributes: ['id', 'idDrink', 'strDrink', 'strDrinkThumb', 'strInstructions', 'description', 'date_created'],
       //  include: [{ model: Liked_recipes, attributes: ['star_value'] }],
       order: [['date_created', 'DESC']],
-      where: { users_id: req.session.user_id }
+      where: { user_id: req.session.user_id }
        });
   
       // Pass serialized data and session flag into template
