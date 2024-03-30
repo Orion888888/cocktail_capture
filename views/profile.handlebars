@@ -1,17 +1,21 @@
+{{#if deleted}}
+<p>RECIPE WAS DELETED</p>
+{{/if}}
+
 
 {{#if none}}
 <p>You have not created any recipes yet!</p>
 {{/if}}
 
 <nav class="nav-bar">
-<a href="/profile/create"><button class="nav-button" id="profile">Add New Recipe</button></a>
+    <a href="/profile/create"><button class="nav-button" id="profile">Add New Recipe</button></a>
 </nav>
 
 {{#each recipes as |recipe| }}
 <div class="card">
     <div class="cocktail-name">
         <div>
-            <h1 class="card-heading">{{recipe.strDrink}}</h1>
+            <a href="/profile/update/{{recipe.id}}"><h1 class="card-heading">{{recipe.strDrink}}</h1></a>
         </div>
     </div>
 
