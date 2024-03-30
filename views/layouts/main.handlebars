@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,12 +18,14 @@
                     {{!-- <img class="" src="/images/drinks_nav_image.jpeg" alt="..."> --}}
 
                     <a href="/profile"><button class="nav-button" id="profile">Profile</button></a>
-                 
-                    <a href="/menu"><button class= "nav-button" id="menu">Menu</button></a>
-               
-                    <a href="#contact"><button class= "nav-button" id="bar">Bar</button></a>
-                   
-                    <a href="/logout" id="logout" class="nav-button">Logout</a>
+
+                    <a href="/menu"><button class="nav-button" id="menu">Menu</button></a>
+
+                    <a href="#contact"><button class="nav-button" id="bar">Bar</button></a>
+
+                    {{#if logged_in}}
+                    <p id="logout" class="nav-button">Logout</p>
+                    {{/if}}
                 </li>
             </ul>
         </nav>
@@ -32,9 +35,9 @@
         {{{body}}}
     </main>
 
-    
+    {{#if logged_in}}
     <script src="../js/logout.js"></script>
-
+    {{/if}}
 </body>
 
 </html>

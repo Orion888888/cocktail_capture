@@ -6,20 +6,16 @@ const withAuth = require('../utils/auth');
 router.get('/', withAuth, async (req, res) => {
     try {
       // Get all recipes created by logged in user
-      // const recipesData = await Recipes.findAll({
-      //   attributes: ['id', 'name', 'date_created'],
-      //   include: [{ model: Liked_recipes, attributes: ['star_value'] }],
-      //   order: [['date_created', 'DESC']],
-      //   where: { users_id: req.session.user_id }
-      // });
-
-      const user = await Users.findByPk(req.session.user_id, {include:[{model: Recipes}]})
-        console.log(user);
+      const recipesData = await Recipes.findAll({
+      attributes: ['id', 'name', 'description', 'date_created'],
+      //  include: [{ model: Liked_recipes, attributes: ['star_value'] }],
+      order: [['date_created', 'DESC']],
+      where: { users_id: req.session.user_id }
+       });
   
-        const recipes = user.recipes.map((recipe) => recipe.get({ plain: true }));
-        console.log("***", recipes);
-
       // Pass serialized data and session flag into template
+      const recipes = recipesData.map((recipe) => recipe.get({ plain: true }));
+
       res.render('profile', {
         recipes,
         logged_in: req.session.logged_in
