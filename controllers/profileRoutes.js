@@ -18,6 +18,7 @@ router.get('/', withAuth, async (req, res) => {
 
       res.render('profile', {
         recipes,
+        none: (recipes.length === 0),
         logged_in: req.session.logged_in
       });
     } catch (err) {
