@@ -19,6 +19,7 @@ router.get('/', withAuth, async (req, res) => {
       res.render('profile', {
         recipes,
         none: (recipes.length === 0),
+        deleted: (req.query.deleted),
         logged_in: req.session.logged_in
       });
     } catch (err) {
@@ -32,6 +33,30 @@ router.get('/', withAuth, async (req, res) => {
       logged_in: req.session.logged_in
     });
   });
+
+// Route to render update/delete page for specific recipe
+router.get('/update/:id', withAuth, async (req, res) => {
+
+  //console.log("******" + req.query.updated);
+
+  try {
+    // Get recipe data by primary key
+    const recipeData = await Recipes.findByPk(req.params.id, {
+    attributes: ['id', 'name', 'description', 'date_created']
+     });
+
+    // Pass serialized data and session flag into template
+    const recipe = recipeData.get({ plain: true });
+
+    res.render('updatedelete', {
+      recipe,
+      updated: (req.query.updated),
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
   /*
   router.get('/liked', withAuth, async (req, res) => {

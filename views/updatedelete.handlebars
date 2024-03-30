@@ -1,14 +1,17 @@
 <div>
+    {{#if updated}}
+    <p>RECIPE HAS BEEN UPDATED</p>
+    {{/if}}
     <h2>Update Recipe</h2>
     <form id="update-form">
         <input type="hidden" id="id" name="id" value="{{recipe.id}}">
         <div>
-            <label for="cocktail-name" value="{{recipe.name}}">Cocktail Name: </label>
-            <input type="text" id="cocktail-name" />
+            <label for="cocktail-name">Cocktail Name: </label>
+            <input type="text" id="cocktail-name" value="{{recipe.name}}" />
         </div>
         <div>
-            <label for="recipe-input" value="{{recipe.description}}">Recipe: </label>
-            <input type="text" id="recipe-input" />
+            <label for="recipe-input" >Recipe: </label>
+            <input type="text" id="recipe-input" value="{{recipe.description}}" />
         </div>
         <div>
             <button type="submit">Update</button>
@@ -19,4 +22,4 @@
         <button type="submit">Delete</button>
     </form>
 </div>
-<script src="../js/updatedelete.js"></script>
+<script src="../../js/updatedelete.js"></script>

@@ -18,33 +18,22 @@ router.post('/', withAuth, async (req, res) => {
 
 
 // Route to update recipe
-router.put(':id', withAuth, async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
   try {
     // Get reciped to update by id
-    const updateRecipe = await Recipes.update({
-      ...req.body,
-      where: { id: req.params.id }
-    });
+    const updateRecipe = await Recipes.update(
+      { ...req.body },
+      { where: { id: req.params.id } }
+    );
 
-    // Pass serialized data and session flag into template
-    const recipe = updateRecipe.map((recipe) => recipe.get({ plain: true }));
-
-    const updated = true;
-
-    res.status(200).json(recipe);
-
-    res.render('updatedelete', {
-      recipe,
-      updated,
-      logged_in: req.session.logged_in
-    });
+    res.status(200).json(updateRecipe);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 // Route to delete recipe
-router.delete(':id', withAuth, async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
   try {
     // Get recipe to delete by id
     const deleteRecipe = await Recipes.destroy({
@@ -52,8 +41,6 @@ router.delete(':id', withAuth, async (req, res) => {
     });
 
     res.status(200).json(deleteRecipe);
-
-    document.location.replace('/profile');
   } catch (err) {
     res.status(500).json(err);
   }

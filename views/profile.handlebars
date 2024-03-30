@@ -1,3 +1,8 @@
+{{#if deleted}}
+<p>RECIPE WAS DELETED</p>
+{{/if}}
+
+
 {{#if none}}
 <p>You have not created any recipes yet!</p>
 {{/if}}
@@ -10,7 +15,7 @@
 <div class="card">
     <div class="cocktail-name">
         <div>
-            <h1 class="card-heading">{{recipe.name}}</h1>
+            <a href="/profile/update/{{recipe.id}}"><h1 class="card-heading">{{recipe.name}}</h1></a>
         </div>
     </div>
 
