@@ -42,6 +42,19 @@ async function fetchDrinksByLetter(letter) {
   }
 }
 
+// Route to fetch drinks for the entire alphabet
+router.get("/menu", async (req, res) => {
+  try {
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    const allDrinks = [];
+
+    // Fetch drinks for each letter of the alphabet
+    for (const letter of alphabet) {
+      const drinks = await fetchDrinksByLetter(letter);
+      if (drinks) {
+        allDrinks.push(...drinks);
+      }
+    }
 
 
 
