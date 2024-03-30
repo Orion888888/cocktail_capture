@@ -33,7 +33,7 @@ router.get('/', async (req, res) => {
 
 router.get ("/menu", async (req,res) => {
   try {
-    const recipeData = await axios.get('http://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
+    const recipeData = await axios.get('http://www.thecocktaildb.com/api/json/v1/1/random.php')
     const { drinks } = recipeData.data
     const myDrinkArray = [] 
     for(let i = 0; i < 10; i++) {
