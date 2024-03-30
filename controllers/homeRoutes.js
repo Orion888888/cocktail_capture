@@ -41,10 +41,12 @@ router.get("/menu", async (req, res) => {
       const recipeData = await axios.get(`http://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`);
       const { drinks } = recipeData.data;
 
-      // Push random drink for each letter to allDrinks array
+      // Push 10 random drinks for each letter to allDrinks array
       if (drinks) {
-        const randomDrink = drinks[Math.floor(Math.random() * drinks.length)];
-        allDrinks.push(randomDrink);
+        for (let i = 0; i < 10; i++) {
+          const randomDrink = drinks[Math.floor(Math.random() * drinks.length)];
+          allDrinks.push(randomDrink);
+        }
       }
     }
 
@@ -54,6 +56,7 @@ router.get("/menu", async (req, res) => {
     res.status(500).send("Error fetching drink data");
   }
 });
+
 
 
 // Route for the login screen
