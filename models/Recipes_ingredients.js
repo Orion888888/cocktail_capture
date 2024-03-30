@@ -10,6 +10,10 @@ Recipes_ingredients.init(
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
+    },
+    amount: {
+      type: DataTypes.STRING,
+      allowNull: true,
     }
   },
   {
