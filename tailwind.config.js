@@ -15,6 +15,7 @@ module.exports = {
     './views/signup.handlebars',
     './views/profile.handlebars',
     './views/menu.handlebars',
-    './views/create.handlebars'
+    './views/create.handlebars',
+    './views/updatedelete.handlebars'
   ],
 }
