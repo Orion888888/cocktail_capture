@@ -56,7 +56,12 @@ router.get("/menu", async (req, res) => {
       }
     }
 
-
+    res.render("menu", { drinks: allDrinks, logged_in: req.session.logged_in });
+  } catch (error) {
+    console.error("Error fetching drinks for the entire alphabet:", error);
+    res.status(500).send("Error fetching drink data");
+  }
+});
 
 // Route for the login screen
 router.get('/login', (req, res) => {
