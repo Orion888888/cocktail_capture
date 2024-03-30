@@ -6,13 +6,25 @@
     <form id="update-form">
         <input type="hidden" id="id" name="id" value="{{recipe.id}}">
         <div>
-            <label for="cocktail-name">Cocktail Name: </label>
-            <input type="text" id="cocktail-name" value="{{recipe.name}}" />
-        </div>
-        <div>
-            <label for="recipe-input" >Recipe: </label>
-            <input type="text" id="recipe-input" value="{{recipe.description}}" />
-        </div>
+      <label for="cocktail-name">Cocktail Name: </label>
+      <input name="cocktail-name" type="text" id="cocktail-name" value="{{recipe.strDrink}}" />
+    </div>
+    <div>
+      <label for="description">Recipe: </label>
+      <input type="text" id="description" value="{{recipe.description}}"/>
+    </div>
+    <div>
+      <label for="strDrinkThumb">Recipe Image: </label>
+      <input name="strDrinkThumb" type="text" id="strDrinkThumb" value="{{recipe.strDrinkThumb}}" />
+    </div>
+    <div>
+      <label for="strInstructions">Recipe Instructions: </label>
+      <input name="strInstructions" type="text" id="strInstructions" value="{{recipe.strInstructions}}" />
+    </div>
+    <div>
+      <label for="strIngredients">Ingredients List: </label>
+      <input name="strInsgredients" type="text" id="strIngredients" value="{{recipe.strIngredients}}" />
+    </div>
         <div>
             <button type="submit">Update</button>
         </div>
