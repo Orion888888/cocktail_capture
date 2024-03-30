@@ -35,9 +35,14 @@ router.get ("/menu", async (req,res) => {
   try {
     const recipeData = await axios.get('http://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
     const {drinks} = recipeData.data
-    
+    const myDrinkArray = [] 
+    for(i = 0; i < 10; i++){
+      var randomDrink = recipeData.data[Math.floor(Math.random() * recipeData.data.length)]
+      myDrinkArray.push(randomDrink)
+    return
+    }
     // console.log(recipes.data[0])
-    res.render("menu", {drinks, logged_in:req.session.logged_in})
+    res.render("menu", {myDrinkArray, logged_in:req.session.logged_in})
   } catch (error) {
     console.log(error)
   }

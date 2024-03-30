@@ -11,7 +11,11 @@ Recipes.init(
       primaryKey: true,
       autoIncrement: true
     },
-    name: {
+    idDrink:{
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    strDrink: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -19,14 +23,18 @@ Recipes.init(
       type: DataTypes.STRING,
       allowNull: false
     },
-    //image: {
-    //  type: DataTypes.STRING,
-    //  allowNull: false
-    //},
-    users_id: {
+    strDrinkThumb: {
+     type: DataTypes.STRING,
+     defaultValue: "./images/martini_glass.jpeg"
+    },
+    strInstructions: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'users',
+        model: 'user',
         key: 'id',
       }
     },

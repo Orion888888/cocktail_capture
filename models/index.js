@@ -12,26 +12,36 @@ const { DataTypes } = require('sequelize');
 
 // User associations
 Users.hasMany(Recipes, {
-    foreignKey: 'users_id',
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
+});
+
+Recipes.hasMany(Ingredients, {
+    foreignKey: 'recipe_id',
+    onDelete: 'CASCADE'
+});
+
+Ingredients.belongsTo(Recipes, {
+    foreignKey: 'recipe_id',
     onDelete: 'CASCADE'
 });
 
 Recipes.belongsTo(Users, {
-    foreignKey: 'users_id'
+    foreignKey: 'user_id'
 });
 
 Users.hasOne(Shopping_list, {
-    foreignKey: 'users_id',
+    foreignKey: 'user_id',
     onDelete: 'CASCADE'
 });
 
 Shopping_list.belongsTo(Users, {
-    foreignKey: 'users_id',
+    foreignKey: 'user_id',
 });
 
 
 // Liked_recipes associations
-Users.belongsToMany(Recipes, { through: Liked_recipes, foreignKey: { name: 'users_id', type: DataTypes.INTEGER } });
+Users.belongsToMany(Recipes, { through: Liked_recipes, foreignKey: { name: 'user_id', type: DataTypes.INTEGER } });
 
 Recipes.belongsToMany(Users, { through: Liked_recipes, foreignKey: { name: 'recipes_id', type: DataTypes.INTEGER } });
 

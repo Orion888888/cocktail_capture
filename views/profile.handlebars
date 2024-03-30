@@ -11,15 +11,15 @@
 <div class="card">
     <div class="cocktail-name">
         <div>
-            <h1 class="card-heading">{{recipe.name}}</h1>
+            <h1 class="card-heading">{{recipe.strDrink}}</h1>
         </div>
     </div>
 
     <!-- section of the card that holds the image, button, and recipe -->
     <div class="cocktail-ingredients">
-        {{!-- <div class="cocktail-image">
-            <img src="{{this.strDrinkThumb}}" alt="{{this.strDrink}}">
-        </div> --}}
+        <div class="cocktail-image">
+            <img src="./images/martini_glass.jpeg" alt="{{this.strDrink}}">
+        </div>
         <h2 class="card-heading">Recipe</h2>
         <p class="recipe">{{recipe.description}}</p>
         <button class="add-to-cart-btn" data-id="{{this.idDrink}}" href="/api/recipes/{{this.idDrink}}">Add To My
