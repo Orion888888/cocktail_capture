@@ -26,7 +26,7 @@ router.get('/', withAuth, async (req, res) => {
     }
   });
 
-
+// Route to render the create recipe form
   router.get('/create', withAuth, (req, res) => {
     res.render('create', {
       logged_in: req.session.logged_in
