@@ -31,18 +31,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Function to fetch drinks for a specific letter
-async function fetchDrinksByLetter(letter) {
-  try {
-    const response = await axios.get(`http://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`);
-    return response.data.drinks;
-  } catch (error) {
-    console.error(`Error fetching drinks for letter ${letter}: ${error.message}`);
-    return [];
-  }
-}
-
-// Route to fetch drinks for the entire alphabet
 router.get("/menu", async (req, res) => {
   try {
     const alphabet = 'abcdefghijklmnopqrstuvwxyz';
@@ -50,18 +38,23 @@ router.get("/menu", async (req, res) => {
 
     // Fetch drinks for each letter of the alphabet
     for (const letter of alphabet) {
-      const drinks = await fetchDrinksByLetter(letter);
+      const recipeData = await axios.get(`http://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`);
+      const { drinks } = recipeData.data;
+
+      // Push random drink for each letter to allDrinks array
       if (drinks) {
-        allDrinks.push(...drinks);
+        const randomDrink = drinks[Math.floor(Math.random() * drinks.length)];
+        allDrinks.push(randomDrink);
       }
     }
 
-    res.render("menu", { drinks: allDrinks, logged_in: req.session.logged_in });
+    res.render("menu", { myDrinkArray: allDrinks, logged_in: req.session.logged_in });
   } catch (error) {
-    console.error("Error fetching drinks for the entire alphabet:", error);
+    console.error(error);
     res.status(500).send("Error fetching drink data");
   }
 });
+
 
 // Route for the login screen
 router.get('/login', (req, res) => {
