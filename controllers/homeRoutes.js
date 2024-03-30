@@ -34,19 +34,21 @@ router.get('/', async (req, res) => {
 router.get ("/menu", async (req,res) => {
   try {
     const recipeData = await axios.get('http://www.thecocktaildb.com/api/json/v1/1/search.php?f=a')
-    const {drinks} = recipeData.data
+    const { drinks } = recipeData.data
     const myDrinkArray = [] 
-    for(i = 0; i < 10; i++){
-      var randomDrink = recipeData.data[Math.floor(Math.random() * recipeData.data.length)]
+    for(let i = 0; i < 10; i++) {
+      // Access random drink from the drinks array
+      const randomDrink = drinks[Math.floor(Math.random() * drinks.length)]
       myDrinkArray.push(randomDrink)
-    return
     }
-    // console.log(recipes.data[0])
-    res.render("menu", {myDrinkArray, logged_in:req.session.logged_in})
+    // Render the menu template with drink data
+    res.render("menu", { myDrinkArray, logged_in: req.session.logged_in })
   } catch (error) {
     console.log(error)
+    res.status(500).send("Error fetching drink data")
   }
 })
+
 
 // Route for the login screen
 router.get('/login', (req, res) => {
