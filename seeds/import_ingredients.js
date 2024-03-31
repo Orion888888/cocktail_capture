@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const requestIngredients = async () => {
     try {
-        const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list');
+        const response = await fetch('https://www.thecocktaildb.com/api/json/v2/9973533/list.php?i=list');
         if (response.ok) {
             const data = await response.json();
             const ingredientArray = data.drinks;

@@ -1,21 +1,21 @@
 [
   {
-    "ingredients_id": 9,
+    "ingredients_id": 282,
     "recipes_id": 1,
     "amount": "To Taste"
   },
   {
-    "ingredients_id": 12,
+    "ingredients_id": 370,
     "recipes_id": 1,
     "amount": "As much as possible"
   },
   {
-    "ingredients_id": 4,
+    "ingredients_id": 1,
     "recipes_id": 2,
     "amount": "2 oz"
   },
   {
-    "ingredients_id": 13,
+    "ingredients_id": 79,
     "recipes_id": 2,
     "amount": "1 Can"
   }
