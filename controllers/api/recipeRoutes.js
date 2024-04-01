@@ -4,7 +4,7 @@ const { Recipes } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 //api request to create a new recipe
-router.post('/', withAuth async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
       const newRecipe = await Recipes.create({
         idDrink: "",

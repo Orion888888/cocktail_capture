@@ -38,12 +38,11 @@ router.get('/', withAuth, async (req, res) => {
 // Route to render update/delete page for specific recipe
 router.get('/update/:id', withAuth, async (req, res) => {
 
-  //console.log("******" + req.query.updated);
-
   try {
     // Get recipe data by primary key
     const recipeData = await Recipes.findByPk(req.params.id, {
-    attributes: ['id', 'name', 'description', 'date_created']
+      include: [Ingredients],
+      attributes: ['id', 'idDrink', 'strDrink', 'strDrinkThumb', 'strInstructions', 'description', 'date_created'],
      });
 
     // Pass serialized data and session flag into template
