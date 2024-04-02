@@ -1,0 +1,27 @@
+ <main>
+        <div class="card">
+            <div class="cocktail-name">
+                <h1>{{{cocktail.name}}}</h1>
+            </div>
+            
+            <div class="cocktail-ingredients">
+                <h2 class="card-heading">Ingredients</h2>
+                <p class="recipe">                    
+                <ul class="list-group list-group-flush">
+            <!-- Iterate over ingredients and measures -->
+            {{#each this}}
+            {{#if (startsWith @key "strIngredient")}}
+            {{#if (lookup ../this @key)}}
+            <li class="list-group-item">{{lookup ../this @key}}</li>
+            {{/if}}
+            {{/if}}
+            {{/each}}
+            </ul>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

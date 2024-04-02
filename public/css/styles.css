@@ -31,6 +31,8 @@ body {
     display: grid;
     grid-template-columns: 2rem 20rem 2rem;
     grid-template-rows: repeat(3, auto);
+    margin-top: 10px;
+    justify-content: center;
 }
 
 /* cocktail name header with gradient */
@@ -103,6 +105,7 @@ body {
 
 /* button attributes */
 .add-to-cart-btn {
+    margin-right: 5px;
     padding: 1em;
     background: var(--gradient);
     color: var(--clr-neutral-100);
@@ -113,6 +116,7 @@ body {
     background-size: 100%;
     transition: background-size 200ms,
         scale 250ms, ease-in-out;
+
 }
 
 /* changes the hover of the button */
