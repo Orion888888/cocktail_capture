@@ -82,6 +82,7 @@ router.delete('/:id', withAuth, async (req, res) => {
   }
 });
 
+/*
 router.post('/:drinkId', async (req, res) => {
   try {
     const drinkId = req.params.drinkId;
@@ -94,7 +95,7 @@ router.post('/:drinkId', async (req, res) => {
 
     // Get the user from the database (assuming you have a User model)
     const userId = req.session.user_id; // Assuming you're using sessions for user authentication
-    const user = await User.findByPk(userId);
+    const user = await Users.findByPk(userId);
 
     // Add the recipe to the user's bar
     if (user) {
@@ -108,5 +109,6 @@ router.post('/:drinkId', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+*/
 
 module.exports = router;

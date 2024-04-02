@@ -4,24 +4,48 @@ const createFormHandler = async (event) => {
   // Collect values from the recipe creation form
   const strDrink = document.querySelector('#cocktail-name').value.trim();
   const description = document.querySelector('#description').value.trim();
-  const recipeImage = document.getElementById('#strDrinkThumb').value.trim();
+  //const recipeImage = document.getElementById('#strDrinkThumb').value.trim();
+
+  console.group( strDrink, description);
 
   if (strDrink && description) {
     // Send a POST request to the API endpoint
     const response = await fetch('/api/recipes', {
       method: 'POST',
-      body: JSON.stringify({ strDrink, description, recipeImage }),
+      body: JSON.stringify({ strDrink, description }),
       headers: { 'Content-Type': 'application/json' },
     });
 
     if (response.ok) {
       // If successful, redirect the browser to the profile page
       document.location.replace('/profile');
+
+      //collectIngredients();
+
     } else {
       alert(response.statusText);
     }
   }
 };
+
+
+const collectIngredients = () => {
+
+  const ingredientValues = document.querySelectorAll('.ingredient');
+
+  var ingredientsArr = [];
+
+  for (i = 0; i < ingredientValues.length; i++) {
+
+    const value = ingredientValues[i].value.trim();
+
+    if (value) { ingredientsArr.push(value) };
+  }
+
+  console.log(ingredientsArr);
+
+};
+
 
 const addIngredient = (event) => {
   event.preventDefault();

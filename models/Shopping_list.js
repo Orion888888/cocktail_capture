@@ -11,7 +11,7 @@ Shopping_list.init(
       primaryKey: true,
       autoIncrement: true
     },
-    users_id: {
+    user_id: {
       type: DataTypes.INTEGER,
       references: {
         model: 'users',

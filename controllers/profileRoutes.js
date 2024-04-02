@@ -8,7 +8,7 @@ router.get('/', withAuth, async (req, res) => {
       // Get all recipes created by logged in user
       const recipesData = await Recipes.findAll({
         include: [Ingredients],
-      attributes: ['id', 'strDrink', 'strDrinkThumb', 'strInstructions', 'description', 'date_created'],
+      attributes: ['id', 'strDrink', 'strDrinkThumb', 'description', 'date_created'],
       //  include: [{ model: Liked_recipes, attributes: ['star_value'] }],
       order: [['date_created', 'DESC']],
       where: { user_id: req.session.user_id }
@@ -42,7 +42,7 @@ router.get('/update/:id', withAuth, async (req, res) => {
     // Get recipe data by primary key
     const recipeData = await Recipes.findByPk(req.params.id, {
       include: [Ingredients],
-      attributes: ['id', 'strDrink', 'strDrinkThumb', 'strInstructions', 'description', 'date_created'],
+      attributes: ['id', 'strDrink', 'strDrinkThumb', 'description', 'date_created'],
      });
 
     // Pass serialized data and session flag into template
@@ -63,10 +63,10 @@ router.get('/update/:id', withAuth, async (req, res) => {
     try {
       // Get 15 most recently post recipes by the community
       const recipesData = await Liked_recipes.findAll({
-        include: [{ model: Recipes, attributes: ['id', 'name', 'users_id', 'date_created'] }],
+        include: [{ model: Recipes, attributes: ['id', 'name', 'user_id', 'date_created'] }],
         include: [{ model: Users, attributes: ['username'] }],
         order: [['date_created', 'DESC']],
-        where: { users_id: req.session.user_id }
+        where: { user_id: req.session.user_id }
       });
   
       // Serialize data so the template can read it
