@@ -29,9 +29,11 @@
         <p class="recipe">Recipe: {{this.strInstructions}}</p>
 
     <div class="flex items-center">
-        <button class="add-to-cart-btn" data-id="{{this.idDrink}}" href="/api/recipes/{{this.idDrink}}">Add To My Bar</button>
+        <button class="add-to-cart-btn" data-id="{{this.idDrink}}">Add To My Bar</button>
+        
         <div class="like-btn flex items-center justify-center w-12 h-12 rounded-full bg-gray-200 cursor-pointer transition duration-300 ease-in-out">
-            <i class="fas fa-thumbs-up text-gray-500 text-xl"></i>
+            <i class="fas fa-thumbs-up text-gray-500 text-xl" data-id="{{this.idDrink}}">
+            </i>
         </div>
         </div>
     </div>
@@ -69,6 +71,6 @@
     </div> --}}
 
 </div>
-<script src="../public/js/liked.js"></script>
-<script src="../js/cart.js"></script>
+{{!-- <script src="./js/cart.js"></script> --}}
 {{/each}}
+<script src="./js/liked.js"></script>

@@ -6,10 +6,10 @@ const axios = require('axios');
 // Route for default homepage showing 15 most recently posted recipes
 router.get('/', async (req, res) => {
  try {
-  if (!req.session.logged_in) {
-    res.redirect('/login');
-    return;
-  }
+  // if (!req.session.logged_in) {
+  //   res.redirect('/login');
+  //   return;
+  // }
   /* 
     // Get 15 most recently posted recipes by the community
     const recipesData = await Recipes.findAll({
@@ -24,8 +24,10 @@ router.get('/', async (req, res) => {
 
     // Pass serialized data and session flag into template */
 
-    res.redirect('/menu'); 
-    return;
+    // res.redirect('/menu'); 
+    // return;
+
+    res.render('homepage', {logged_in: req.session.logged_in})
   } catch (err) {
     res.status(500).json(err);
   }

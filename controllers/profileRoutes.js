@@ -7,7 +7,7 @@ router.get('/', withAuth, async (req, res) => {
     try {
       // Get all recipes created by logged in user
       const recipesData = await Recipes.findAll({
-      attributes: ['id', 'strDrink', 'strDrinkThumb', 'description', 'date_created'],
+      // attributes: ['id', 'strDrink', 'strDrinkThumb', 'description', 'date_created'],
       include: Ingredients,
       //  include: [{ model: Liked_recipes, attributes: ['star_value'] }],
       order: [['date_created', 'DESC']],
@@ -21,7 +21,6 @@ router.get('/', withAuth, async (req, res) => {
         console.log(list.ingredients);
       };
       
-
       res.render('profile', {
         recipes,
         none: (recipes.length === 0),
