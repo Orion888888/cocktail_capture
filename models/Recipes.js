@@ -11,10 +11,6 @@ Recipes.init(
       primaryKey: true,
       autoIncrement: true
     },
-    idDrink:{
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     strDrink: {
       type: DataTypes.STRING,
       allowNull: false
