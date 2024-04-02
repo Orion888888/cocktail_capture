@@ -1,0 +1,24 @@
+<head>
+    <title>My Shopping List</title>
+</head>
+<body>
+       {{#each cartItems}}
+        <div class="card">
+                <div>
+                    <h1>My Shopping List</h1>
+                </div>
+            <div class="cocktail-ingredients">
+                <ul class="list-group list-group-flush">
+                    <!-- Iterate over ingredients and measures -->
+                    {{#each this}}
+                        {{#if (and (startsWith @key "strIngredient") (this ../this))}}
+                            {{#if (this ../this)}}
+                                <li class="list-group-item">{{lookup ../this @key}} {{lookup ../this (replace @key "Ingredient" "Measure")}}</li>
+                            {{/if}}
+                        {{/if}}
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    {{/each}}
+</body>
