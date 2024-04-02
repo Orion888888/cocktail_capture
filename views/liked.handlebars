@@ -1,0 +1,18 @@
+<!-- liked-drinks.handlebars -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liked Drinks</title>
+</head>
+<body>
+    <h1>Liked Drinks</h1>
+    <ul>
+        {{#each likedDrinks}}
+            <li>{{this.name}}</li>
+            <!-- Add other properties as needed -->
+        {{/each}}
+    </ul>
+</body>
+</html>

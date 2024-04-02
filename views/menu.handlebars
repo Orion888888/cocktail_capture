@@ -8,7 +8,7 @@
             <h1 class="card-heading">{{this.strDrink}}</h1>
         </div>
     </div>
-    
+
 
     <!-- section of the card that holds the image, button, and recipe -->
     <div class="cocktail-ingredients">
@@ -19,25 +19,20 @@
         <ul class="list-group list-group-flush">
             <!-- Iterate over ingredients and measures -->
             {{#each this}}
-                {{#if (startsWith @key "strIngredient")}}
-                    {{#if (lookup ../this @key)}}
-                        <li class="list-group-item">{{lookup ../this @key}} {{../this.[@key "Measure"]}}</li>
-                    {{/if}}
-                {{/if}}
+            {{#if (startsWith @key "strIngredient")}}
+            {{#if (lookup ../this @key)}}
+            <li class="list-group-item">{{lookup ../this @key}} {{../this.[@key "Measure"]}}</li>
+            {{/if}}
+            {{/if}}
             {{/each}}
         </ul>
         <p class="recipe">Recipe: {{this.strInstructions}}</p>
-        <button class="add-to-cart-btn" data-id="{{this.idDrink}}" href="/api/recipes/{{this.idDrink}}">Add To My
-            Bar</button>
-        <div class="flex justify-between">
-            <div class="like-btn flex items-center justify-center w-12
-                        h-12 rounded-full bg-gray-200 cursor-pointer
-                        transition duration-300 ease-in-out">
-                <i class="fas fa-thumps-up
-                        text-gray-500 text-xl">
-                </i>
-            </div>
-        </div>   
+    <div class="flex items-center"> <!-- Adjust alignment -->
+        <button class="add-to-cart-btn" data-id="{{this.idDrink}}" href="/api/recipes/{{this.idDrink}}">Add To My Bar</button>
+        <div class="like-btn flex items-center justify-center w-12 h-12 rounded-full bg-gray-200 cursor-pointer transition duration-300 ease-in-out">
+            <i class="fas fa-thumbs-up text-gray-500 text-xl"></i>
+        </div>
+        </div>
     </div>
 
     <!-- section of the page that will hold the star rating bar -->
