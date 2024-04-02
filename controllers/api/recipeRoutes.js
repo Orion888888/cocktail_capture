@@ -35,6 +35,41 @@ router.put('/:id', withAuth, async (req, res) => {
   }
 });
 
+//Route to add liked recipes to Top-Shelf
+router.get('/liked', withAuth, async (req, res) => {
+  try {
+    // Fetch the liked recipes associated with the current user
+    const userId = req.session.user_id;
+    const likedRecipes = await LikedRecipe.findAll({ where: { userId } });
+    
+    // Render the liked.handlebars page with the liked recipes
+    res.render('liked', { likedRecipes });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Route to add a recipe to liked recipes
+router.post('/liked/:drinkId', withAuth, async (req, res) => {
+  try {
+    const drinkId = req.params.drinkId;
+    const userId = req.session.user_id;
+
+    // Check if the recipe is already in the user's liked recipes
+    const alreadyLiked = await LikedRecipe.findOne({ where: { userId, recipeId: drinkId } });
+    if (alreadyLiked) {
+      return res.status(400).json({ message: 'Recipe already liked' });
+    }
+
+    // Add the recipe to the user's liked recipes
+    await LikedRecipe.create({ userId, recipeId: drinkId });
+    
+    res.status(200).json({ message: 'Recipe added to liked recipes successfully' });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // Route to delete recipe
 router.delete('/:id', withAuth, async (req, res) => {
   try {
