@@ -62,7 +62,6 @@ const submitIngredients = async (data) => {
       if (response.ok) {
         const data = await response.json();
         console.log(data);
-        return;
       } else {
         alert(response.statusText);
       }

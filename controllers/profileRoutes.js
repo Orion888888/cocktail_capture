@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Users, Recipes, Liked_recipes, Ingredients } = require('../models');
+const { Users, Recipes, Liked_recipes, Ingredients, Recipes_ingredients } = require('../models');
 const withAuth = require('../utils/auth');
 
 // Default profile route showing most recently created recipes
@@ -7,8 +7,8 @@ router.get('/', withAuth, async (req, res) => {
     try {
       // Get all recipes created by logged in user
       const recipesData = await Recipes.findAll({
-        include: [Ingredients],
       attributes: ['id', 'strDrink', 'strDrinkThumb', 'description', 'date_created'],
+      include: Ingredients,
       //  include: [{ model: Liked_recipes, attributes: ['star_value'] }],
       order: [['date_created', 'DESC']],
       where: { user_id: req.session.user_id }
@@ -16,6 +16,11 @@ router.get('/', withAuth, async (req, res) => {
   
       // Pass serialized data and session flag into template
       const recipes = recipesData.map((recipe) => recipe.get({ plain: true }));
+
+      for (list of recipes) {
+        console.log(list.ingredients);
+      };
+      
 
       res.render('profile', {
         recipes,
@@ -47,6 +52,8 @@ router.get('/update/:id', withAuth, async (req, res) => {
 
     // Pass serialized data and session flag into template
     const recipe = recipeData.get({ plain: true });
+
+    console.log(recipe.ingredients);
 
     res.render('updatedelete', {
       recipe,
