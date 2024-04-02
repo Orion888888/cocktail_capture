@@ -5,7 +5,7 @@ const router = express.Router();
 router.post('/:drinkId', async (req, res) => {
     const drinkId = req.params.drinkId;
     try {
-        const cartItem = await CartItem.create({ userId: req.session.user_id, drinkId });
+        const cartItem = await CartItem.create({ user_id: req.session.user_id, drinkId });
     
     //success response
     res.sendStatus(200);

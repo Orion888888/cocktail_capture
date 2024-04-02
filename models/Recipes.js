@@ -23,14 +23,10 @@ Recipes.init(
      type: DataTypes.STRING,
      defaultValue: "./images/martini_glass.jpeg"
     },
-    strInstructions: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'user',
+        model: 'users',
         key: 'id',
       }
     },

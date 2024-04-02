@@ -16,16 +16,6 @@ Users.hasMany(Recipes, {
     onDelete: 'CASCADE'
 });
 
-Recipes.hasMany(Ingredients, {
-    foreignKey: 'recipe_id',
-    onDelete: 'CASCADE'
-});
-
-Ingredients.belongsTo(Recipes, {
-    foreignKey: 'recipe_id',
-    onDelete: 'CASCADE'
-});
-
 Recipes.belongsTo(Users, {
     foreignKey: 'user_id'
 });

@@ -9,11 +9,8 @@ router.post('/', withAuth, async (req, res) => {
       const newRecipe = await Recipes.create({
         strDrink: req.body.strDrink,
         description: req.body.description,
-        strInstructions: req.body.recipeInstructions,
-        strIngredients: "test",
         user_id: req.session.user_id
       });
-      console.log(newRecipe);
       res.status(200).json(newRecipe);
     } catch (err) {
       res.status(400).json(err);
@@ -84,6 +81,17 @@ router.delete('/:id', withAuth, async (req, res) => {
   }
 });
 
+// Route to return an ingredient ID by matching name
+router.get('/ingredients', withAuth, async (req, res) => {
+  try {
+    const ingredientId = await Ingredients.findByPk(res.body);
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+/*
 router.post('/:drinkId', async (req, res) => {
   try {
     const drinkId = req.params.drinkId;
@@ -96,7 +104,7 @@ router.post('/:drinkId', async (req, res) => {
 
     // Get the user from the database (assuming you have a User model)
     const userId = req.session.user_id; // Assuming you're using sessions for user authentication
-    const user = await User.findByPk(userId);
+    const user = await Users.findByPk(userId);
 
     // Add the recipe to the user's bar
     if (user) {
@@ -110,5 +118,6 @@ router.post('/:drinkId', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+*/
 
 module.exports = router;
