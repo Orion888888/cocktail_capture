@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // AJAX request to server to handle the 'like' operation
             try {
-                const response = await fetch(`/api/like/${id}`, {
+                const response = await fetch(`/api/like/${drinkId}`, {
                     method: 'POST'
                 });
                 

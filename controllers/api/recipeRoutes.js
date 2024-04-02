@@ -36,6 +36,17 @@ router.put('/:id', withAuth, async (req, res) => {
   }
 });
 
+//Route to add liked recipes to Top-Shelf
+router.get('/liked', (req, res) => {
+  //render the liked.handlebars page
+  res.render('liked');
+})
+
+// Route to add a recipe to liked recipes
+router.post('/liked/:drinkId', async (req, res) => {
+  //add a recipe to liked recipes
+});
+
 // Route to delete recipe
 router.delete('/:id', withAuth, async (req, res) => {
   try {
