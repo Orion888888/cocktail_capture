@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Select all elements with class 'like-btn'
     const likeBtns = document.querySelectorAll('.like-btn');
     
-    // Add event listener to each like button
+    // Event Listener
     likeBtns.forEach(likeBtn => {
         likeBtn.addEventListener('click', async () => {
             // Retrieve drink ID from data attribute
