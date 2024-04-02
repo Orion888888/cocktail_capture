@@ -10,10 +10,6 @@ Liked_recipes.init(
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
-    },
-    star_value: {
-        type: DataTypes.INTEGER,
-        allowNull: false
     }
   },
   {
