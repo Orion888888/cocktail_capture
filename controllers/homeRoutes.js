@@ -35,28 +35,29 @@ router.get("/menu", async (req, res) => {
   try {
     const alphabet = 'abcdefghijklmnopqrstuvwxyz';
     const allDrinks = [];
+    let drinkCount = 0;
 
-    // Fetch drinks for each letter of the alphabet
-    for (const letter of alphabet) {
+    // Continue fetching drinks until we have 10 random drinks or exhaust the alphabet
+    while (drinkCount < 10) {
+      // Choose a random letter from the alphabet
+      const letter = alphabet[Math.floor(Math.random() * alphabet.length)];
       const recipeData = await axios.get(`http://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`);
       const { drinks } = recipeData.data;
 
-      // Push 10 random drinks for each letter to allDrinks array
-      if (drinks) {
-        for (let i = 0; i < 10; i++) {
-          const randomDrink = drinks[Math.floor(Math.random() * drinks.length)];
-          allDrinks.push(randomDrink);
-        }
+      // If drinks are available, choose a random drink and push it to the allDrinks array
+      if (drinks && drinks.length > 0) {
+        const randomDrink = drinks[Math.floor(Math.random() * drinks.length)];
+        allDrinks.push(randomDrink);
+        drinkCount++;
       }
     }
 
     res.render("menu", { myDrinkArray: allDrinks, logged_in: req.session.logged_in });
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching drinks for letter", letter, ":", error);
     res.status(500).send("Error fetching drink data");
   }
 });
-
 
 
 // Route for the login screen

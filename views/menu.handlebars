@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+
 {{#each myDrinkArray}}
 <div class="card">
     <div class="cocktail-name">
@@ -5,6 +8,7 @@
             <h1 class="card-heading">{{this.strDrink}}</h1>
         </div>
     </div>
+
 
     <!-- section of the card that holds the image, button, and recipe -->
     <div class="cocktail-ingredients">
@@ -15,21 +19,26 @@
         <ul class="list-group list-group-flush">
             <!-- Iterate over ingredients and measures -->
             {{#each this}}
-                {{#if (startsWith @key "strIngredient")}}
-                    {{#if (lookup ../this @key)}}
-                        <li class="list-group-item">{{lookup ../this @key}} {{../this.[@key "Measure"]}}</li>
-                    {{/if}}
-                {{/if}}
+            {{#if (startsWith @key "strIngredient")}}
+            {{#if (lookup ../this @key)}}
+            <li class="list-group-item">{{lookup ../this @key}} {{../this.[@key "Measure"]}}</li>
+            {{/if}}
+            {{/if}}
             {{/each}}
         </ul>
         <p class="recipe">Recipe: {{this.strInstructions}}</p>
-        <button class="add-to-cart-btn" data-id="{{this.id}}" href="/api/recipes/{{this.id}}">Add To My
-            Bar</button>
+
+    <div class="flex items-center">
+        <button class="add-to-cart-btn" data-id="{{this.idDrink}}" href="/api/recipes/{{this.idDrink}}">Add To My Bar</button>
+        <div class="like-btn flex items-center justify-center w-12 h-12 rounded-full bg-gray-200 cursor-pointer transition duration-300 ease-in-out">
+            <i class="fas fa-thumbs-up text-gray-500 text-xl"></i>
+        </div>
+        </div>
     </div>
 
     <!-- section of the page that will hold the star rating bar -->
 
-    <div class="rating-bar">
+    {{!-- <div class="rating-bar">
         <div class="flex items-center">
             <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor" viewBox="0 0 22 20">
@@ -57,9 +66,9 @@
                     d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
             </svg>
         </div>
-    </div>
+    </div> --}}
 
 </div>
-
+<script src="../public/js/liked.js"></script>
 <script src="../js/cart.js"></script>
 {{/each}}

@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 const cartRoutes = require('./controllers/cartRoutes');
+const recipeRoutes = require('./controllers/api/recipeRoutes');
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -46,6 +47,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/cart', cartRoutes);
+app.use('/liked', recipeRoutes);
 
 app.use(routes);
 
