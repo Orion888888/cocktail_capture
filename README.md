@@ -9,6 +9,7 @@ As a cocktail enthusiast, I want an app that allows me to share my coktail recip
 * Express.js
 * Handlebars
 * Node.js 
+* Axios
 
 ## Installation Instructions
 1. Clone the repository onto your local machine using terminal 

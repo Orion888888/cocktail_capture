@@ -177,6 +177,10 @@ header nav ul {
     justify-content: center;
 }
 
+.search-bar {
+    margin-top: 15px;
+}
+
 
 @media (min-width: 768px) {
     .md\:static {
