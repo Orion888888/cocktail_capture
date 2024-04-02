@@ -9,8 +9,6 @@ router.post('/', withAuth, async (req, res) => {
       const newRecipe = await Recipes.create({
         strDrink: req.body.strDrink,
         description: req.body.description,
-        strInstructions: req.body.recipeInstructions,
-        strIngredients: "test",
         user_id: req.session.user_id
       });
       console.log(newRecipe);
