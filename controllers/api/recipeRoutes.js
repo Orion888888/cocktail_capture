@@ -11,7 +11,6 @@ router.post('/', withAuth, async (req, res) => {
         description: req.body.description,
         user_id: req.session.user_id
       });
-      console.log(newRecipe);
       res.status(200).json(newRecipe);
     } catch (err) {
       res.status(400).json(err);
@@ -77,6 +76,16 @@ router.delete('/:id', withAuth, async (req, res) => {
     });
 
     res.status(200).json(deleteRecipe);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Route to return an ingredient ID by matching name
+router.get('/ingredients', withAuth, async (req, res) => {
+  try {
+    const ingredientId = await Ingredients.findByPk(res.body);
+
   } catch (err) {
     res.status(500).json(err);
   }

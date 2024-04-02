@@ -6,7 +6,7 @@ const createFormHandler = async (event) => {
   const description = document.querySelector('#description').value.trim();
   //const recipeImage = document.getElementById('#strDrinkThumb').value.trim();
 
-  console.group( strDrink, description);
+  console.group(strDrink, description);
 
   if (strDrink && description) {
     // Send a POST request to the API endpoint
@@ -18,10 +18,13 @@ const createFormHandler = async (event) => {
 
     if (response.ok) {
       // If successful, redirect the browser to the profile page
+      
+      const data = await response.json();
+
+      console.log(data);
+
+      await submitIngredients(data);
       document.location.replace('/profile');
-
-      //collectIngredients();
-
     } else {
       alert(response.statusText);
     }
@@ -29,21 +32,58 @@ const createFormHandler = async (event) => {
 };
 
 
-const collectIngredients = () => {
+const submitIngredients = async (data) => {
+  const recipes_id = data.id;
 
-  const ingredientValues = document.querySelectorAll('.ingredient');
+  const ingredientsEl = document.querySelectorAll('.ingredient');
+  const amountsEl = document.querySelectorAll('.amount');
 
-  var ingredientsArr = [];
+  for (i = 0; i < ingredientsEl.length; i++) {
 
-  for (i = 0; i < ingredientValues.length; i++) {
+    if (ingredientsEl[i].value) {
+      const ingredientData = await getIngredientId(ingredientsEl[i].value.trim());
+      const ingredients_id = ingredientData.id;
 
-    const value = ingredientValues[i].value.trim();
+      const amount = amountsEl[i].value.trim();
 
-    if (value) { ingredientsArr.push(value) };
+      console.log('-----');
+      console.log(ingredients_id);
+      console.log(recipes_id);
+      console.log(amount);
+      console.log('-----');
+
+      // Send a POST request to the API endpoint
+      const response = await fetch('/api/ingredients', {
+        method: 'POST',
+        body: JSON.stringify({ ingredients_id, recipes_id, amount }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        return;
+      } else {
+        alert(response.statusText);
+      }
+    } else {
+      return;
+    }
   }
+};
 
-  console.log(ingredientsArr);
+const getIngredientId = async (name) => {
+  // Send a GET request to the API endpoint
+  const response = await fetch(`/api/ingredients/${name}`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  });
 
+  if (response.ok) {
+    return await response.json();
+  } else {
+    alert(response.statusText);
+  }
 };
 
 
