@@ -31,7 +31,7 @@ body {
     display: grid;
     grid-template-columns: 2rem 20rem 2rem;
     grid-template-rows: repeat(3, auto);
-    margin-top: 10px;
+    margin-top: 20px;
     justify-content: center;
 }
 
