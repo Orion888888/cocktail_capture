@@ -13,8 +13,8 @@ router.get("/cart", withAuth, async (req, res) => {
 });
 
 //Route to add item to cart
-router.post('/:drinkId', async (req, res) => {
-    const drinkId = req.params.drinkId;
+router.post('/:id', async (req, res) => {
+    const drinkId = req.params.id;
     try {
         const cartItem = await CartItem.create({ user_id: req.session.user_id, drinkId });
 
