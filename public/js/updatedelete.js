@@ -4,7 +4,6 @@ const updateFormHandler = async (event) => {
   // Collect values from the update form
   const strDrink = document.querySelector('#cocktail-name').value.trim();
   const description = document.querySelector('#description').value.trim();
-  //const recipeImage = document.getElementById('strDrinkThumb').value.trim();
   const id = parseInt(document.querySelector('#id').value);
 
   if (strDrink && description && id) {

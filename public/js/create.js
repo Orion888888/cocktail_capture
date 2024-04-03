@@ -4,7 +4,6 @@ const createFormHandler = async (event) => {
   // Collect values from the recipe creation form
   const strDrink = document.querySelector('#cocktail-name').value.trim();
   const description = document.querySelector('#description').value.trim();
-  //const recipeImage = document.getElementById('#strDrinkThumb').value.trim();
 
   console.group(strDrink, description);
 
