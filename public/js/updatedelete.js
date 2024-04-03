@@ -1,3 +1,17 @@
+let ingredientsArr = [];
+
+// API request to retrieve and then create an array of all ingredient strings
+const getIngredientsArr = async () => {
+  const response = await fetch('/api/ingredients', {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' }
+  });
+
+  const data = await response.json();
+
+  ingredientsArr = data.map(ingredient => ingredient.name);
+};
+
 const updateFormHandler = async (event) => {
   event.preventDefault();
 
@@ -35,12 +49,6 @@ const submitIngredients = async (recipes_id) => {
       const ingredients_id = ingredientData.id;
 
       const amount = amountsEl[i].value.trim();
-
-      console.log('-----');
-      console.log(ingredients_id);
-      console.log(recipes_id);
-      console.log(amount);
-      console.log('-----');
 
       // Send a POST request to the API endpoint
       const response = await fetch('/api/ingredients', {
@@ -108,6 +116,7 @@ const addIngredient = (event) => {
   <div>
     <label for="ingredient">Ingredient: </label>
     <input name="ingredient" type="text" class="ingredient" />
+    <ul class="suggestions" style="list-style-type: none; padding: 0; display: none;"></ul>
   </div>
 
   <div>
@@ -134,6 +143,21 @@ const removeIngredient = (event) => {
 
 // Removes and re-adds event listeners on all minus buttons for individual ingredients
 const resetEvents = () => {
+  const ingredientInput = document.querySelectorAll('.ingredient');
+  const suggestionsList = document.querySelectorAll('.suggestions');
+
+  for (input of ingredientInput) {
+    input.removeEventListener('input', autoComplete);
+    input.removeEventListener('input', invalidValue);
+    input.addEventListener('input', autoComplete);
+    input.addEventListener('input', invalidValue);
+  }
+
+  for (suggestion of suggestionsList) {
+    suggestion.removeEventListener('click', clickValue);
+    suggestion.addEventListener('click', clickValue);
+  }
+
   const removeButtons = document.querySelectorAll('.remove');
 
   for (button of removeButtons) {
@@ -141,6 +165,71 @@ const resetEvents = () => {
     button.addEventListener('click', removeIngredient);
   }
 };
+
+const autoComplete = (event) => {
+  const userInput = event.target.value.trim().toLowerCase();
+
+  if (userInput.length > 2) {
+    const matchedIngredients = ingredientsArr.filter(ingredient =>
+      ingredient.toLowerCase().includes(userInput)
+    );
+
+    displaySuggestions(matchedIngredients, event);
+  } else {
+    event.target.nextElementSibling.style.display = 'none';
+  }
+};
+
+function displaySuggestions(suggestions, event) {
+  const suggestionsList = event.target.nextElementSibling;
+  suggestionsList.innerHTML = '';
+  if (suggestions.length > 0) {
+    suggestions.forEach(suggestion => {
+      const li = document.createElement('li');
+      li.textContent = suggestion;
+      suggestionsList.appendChild(li);
+    });
+    suggestionsList.style.display = 'block';
+  } else {
+    suggestionsList.style.display = 'none';
+  }
+}
+
+const invalidValue = (event) => {
+  const userInput = event.target.value.trim().toLowerCase();
+  const matchedIngredients = ingredientsArr.filter(ingredient =>
+    ingredient.toLowerCase().includes(userInput)
+  );
+  if (matchedIngredients.length < 1) {
+    // Prevent another character if not a valid ingredient entry
+    event.target.value = event.target.value.slice(0, -1);
+    autoComplete(event);
+  }
+};
+
+const clickValue = (event) => {
+  if (event.target.tagName === 'LI') {
+    event.target.parentElement.previousElementSibling.value = event.target.textContent;
+    event.target.parentElement.style.display = 'none';
+  }
+};
+
+document.addEventListener('click', function (event) {
+  const suggestionsList = document.querySelectorAll('.suggestions');
+
+  suggestionsList.forEach(suggestions => {
+    const inputElement = suggestions.previousElementSibling;
+    if (!suggestions.contains(event.target) && (!validateInput(inputElement.value))) {
+        suggestions.style.display = 'none';
+      if (inputElement.tagName === 'INPUT') {
+        inputElement.value = ''; // Clear the input if user clicks outside
+      }
+    } else {suggestions.style.display = 'none';}
+  });
+});
+
+const validateInput = (input) => { return ingredientsArr.includes(input) };
+
 
 document
   .querySelector('#update-form')
@@ -155,3 +244,4 @@ document
   .addEventListener('click', addIngredient);
 
   resetEvents();
+  window.addEventListener('load', getIngredientsArr);
