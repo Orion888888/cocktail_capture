@@ -3,3 +3,5 @@ const likeHandler = (event) => {
     const drinkId = target.getAttribute('')
 }
 document.querySelector('.like-btn').addEventListener('click', likeHandler);
+
+target.getAttribute("data-id")
