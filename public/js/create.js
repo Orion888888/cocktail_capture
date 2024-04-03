@@ -15,14 +15,11 @@ const createFormHandler = async (event) => {
       headers: { 'Content-Type': 'application/json' },
     });
 
-    if (response.ok) {
-      // If successful, redirect the browser to the profile page
-      
+    if (response.ok) {  
       const data = await response.json();
-
-      console.log(data);
-
       await submitIngredients(data);
+
+      // If successful, redirect the browser to the profile page
       document.location.replace('/profile');
     } else {
       alert(response.statusText);
@@ -64,8 +61,6 @@ const submitIngredients = async (data) => {
       } else {
         alert(response.statusText);
       }
-    } else {
-      return;
     }
   }
 };

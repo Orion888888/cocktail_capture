@@ -35,18 +35,22 @@
         </div>
 
       </div>
+
       {{/each}}
+    </div>
+    <div>
+      <button type="button" id="add">Add Ingredient</button>
+    </div>
+
+
+    <br>
+    <!-- -->
+
+
+    <div>
       <div>
-        <button type="button" id="add">Add Ingredient</button>
+        <button type="submit">Update</button>
       </div>
-      <br>
-      <!-- -->
-
-
-      <div>
-        <div>
-          <button type="submit">Update</button>
-        </div>
   </form>
   <form id="delete-form">
     <input type="hidden" id="id" name="id" value="{{recipe.id}}">
