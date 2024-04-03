@@ -177,6 +177,18 @@ header nav ul {
     justify-content: center;
 }
 
+.align-amounts-right {
+    max-width: 100%;
+    font-weight: 500;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+} 
+
+.amounts {
+    font-weight: 400;
+}
+
 .search-bar {
     margin-top: 15px;
 }

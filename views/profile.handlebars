@@ -24,6 +24,15 @@
         <div class="cocktail-image">
             <img src="./images/martini_glass.jpeg" alt="{{this.strDrink}}">
         </div>
+
+        <h2 class="card-heading">Ingredients</h2>
+        <ul class="list-group list-group-flush">
+            <!-- Iterate over ingredients and measures -->
+            {{#each recipe.ingredients as |ingredient|}}
+            <li class="list-group-item align-amounts-right">{{ingredient.name}}: <span class="amounts">{{ingredient.recipes_ingredients.amount}}</span></li>
+            {{/each}}
+        </ul>
+
         <h2 class="card-heading">Recipe</h2>
         <p class="recipe">{{recipe.description}}</p>
         <button class="add-to-cart-btn" data-id="{{recipe.id}}" >Add To My
