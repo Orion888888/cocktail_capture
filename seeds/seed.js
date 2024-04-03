@@ -4,7 +4,7 @@ const { Liked_recipes, Recipes_ingredients, Shopping_list_recipes } = require('.
 
 const ingredientsData = require('./ingredientsData.json');
 const recipesData = require('./recipesData.json');
-//const shopping_listData = require('./shopping_listData.json');
+const shopping_listData = require('./shopping_listData.json');
 const usersData = require('./usersData.json');
 //const liked_recipesData = require('./liked_recipesData.json');
 const recipes_ingredientsData = require('./recipes_ingredientsData.json');
@@ -17,6 +17,12 @@ const seedDatabase = async () => {
   await sequelize.transaction(async (t) => {
     for (let u = 0; u < usersData.length; u++) {
       await Users.create(usersData[u], { transaction: t, individualHooks: true });
+    }
+  });
+
+  await sequelize.transaction(async (t) => {
+    for (let u = 0; u < shopping_listData.length; u++) {
+      await Shopping_list.create(shopping_listData[u], { transaction: t });
     }
   });
 

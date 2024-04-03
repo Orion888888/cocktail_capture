@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const axios = require('axios');
-const { Recipes } = require('../../models');
+const { Recipes, Recipes_ingredients } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 //api request to create a new recipe
@@ -25,6 +25,9 @@ router.put('/:id', withAuth, async (req, res) => {
       { ...req.body },
       { where: { id: req.params.id } }
     );
+
+    // Destroy all ingredient entries assigned to this recipe ID
+    await Recipes_ingredients.destroy({ where: {recipes_id: req.params.id}});
 
     res.status(200).json(updateRecipe);
   } catch (err) {

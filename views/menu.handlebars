@@ -1,6 +1,15 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <script src="https://cdn.tailwindcss.com"></script>
 
+<label class="relative block">
+                        <button class="sr-only">Search</button>
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+                        </span>
+                        <input
+                            class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
+                            placeholder="Search by Ingredient" type="text" name="search" />
+                    </label>
+
 {{#each myDrinkArray}}
 <div class="card">
     <div class="cocktail-name">

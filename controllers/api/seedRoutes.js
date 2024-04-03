@@ -5,7 +5,7 @@ const { Liked_recipes, Recipes_ingredients, Shopping_list_recipes } = require('.
 
 const ingredientsData = require('../../seeds/ingredientsData.json');
 const recipesData = require('../../seeds/recipesData.json');
-//const shopping_listData = require('../../seeds/shopping_listData.json');
+const shopping_listData = require('../../seeds/shopping_listData.json');
 const usersData = require('../../seeds/usersData.json');
 //const liked_recipesData = require('../../seeds/liked_recipesData.json');
 const recipes_ingredientsData = require('../../seeds/recipes_ingredientsData.json');
@@ -23,6 +23,12 @@ router.get('/', async (req, res) => {
                     await Users.create(usersData[u], { transaction: t, individualHooks: true });
                 }
             });
+
+            await sequelize.transaction(async (t) => {
+                for (let u = 0; u < shopping_listData.length; u++) {
+                  await Shopping_list.create(shopping_listData[u], { transaction: t });
+                }
+              });
 
             await sequelize.transaction(async (t) => {
                 for (let u = 0; u < ingredientsData.length; u++) {

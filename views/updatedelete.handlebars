@@ -1,30 +1,61 @@
 <div>
-    {{#if updated}}
-    <p>RECIPE HAS BEEN UPDATED</p>
-    {{/if}}
-    <h2>Update Recipe</h2>
-    <form id="update-form">
-        <input type="hidden" id="id" name="id" value="{{recipe.id}}">
-        <div>
+  {{#if updated}}
+  <p>RECIPE HAS BEEN UPDATED</p>
+  {{/if}}
+  <h2>Update Recipe</h2>
+  <form id="update-form">
+    <input type="hidden" id="id" name="id" value="{{recipe.id}}">
+    <div>
       <label for="cocktail-name">Cocktail Name: </label>
       <input name="cocktail-name" type="text" id="cocktail-name" value="{{recipe.strDrink}}" />
     </div>
     <div>
       <label for="description">Recipe: </label>
-      <input type="text" id="description" value="{{recipe.description}}"/>
+      <input type="text" id="description" value="{{recipe.description}}" />
     </div>
-    <div>
-      <label for="strDrinkThumb">Recipe Image: </label>
-      <input name="strDrinkThumb" type="text" id="strDrinkThumb" value="{{recipe.strDrinkThumb}}" />
-    </div>
-    <div>
+    <br>
+
+    <!-- Code for initial ingredient entry.  Additional entries added dynamically -->
+    <div id="ingredient-form">
+      {{#each recipe.ingredients as |ingredient|}}
+      <div class="flex add-ingredient">
+
         <div>
-            <button type="submit">Update</button>
+          <label for="ingredient">Ingredient: </label>
+          <input name="ingredient" type="text" class="ingredient" value="{{ingredient.name}}" />
+          <ul class="suggestions" style="list-style-type: none; padding: 0; display: none;"></ul>
         </div>
-    </form>
-    <form id="delete-form">
-        <input type="hidden" id="id" name="id" value="{{recipe.id}}">
-        <button type="submit">Delete</button>
-    </form>
+
+        <div>
+          <label for="amount">Amount: </label>
+          <input name="amount" type="text" class="amount" value="{{ingredient.recipes_ingredients.amount}}" />
+        </div>
+
+        <div>
+          <button type="button" class="remove">-</button>
+        </div>
+
+      </div>
+
+      {{/each}}
+    </div>
+    <div>
+      <button type="button" id="add">Add Ingredient</button>
+    </div>
+
+
+    <br>
+    <!-- -->
+
+
+    <div>
+      <div>
+        <button type="submit">Update</button>
+      </div>
+  </form>
+  <form id="delete-form">
+    <input type="hidden" id="id" name="id" value="{{recipe.id}}">
+    <button type="submit">Delete</button>
+  </form>
 </div>
 <script src="./js/updatedelete.js"></script>
