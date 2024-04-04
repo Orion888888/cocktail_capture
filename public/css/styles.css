@@ -27,6 +27,11 @@ body {
     margin: 10px auto;
 }
 
+.view-titles {
+    font-size: 2em;
+    font-weight: bold;
+}
+
 .card {
     display: grid;
     grid-template-columns: 2rem 20rem 2rem;
@@ -117,6 +122,10 @@ body {
     transition: background-size 200ms,
         scale 250ms, ease-in-out;
 
+}
+
+.red {
+    background: rgb(230, 103, 158);
 }
 
 /* changes the hover of the button */

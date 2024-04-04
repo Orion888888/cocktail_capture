@@ -1,33 +1,44 @@
-    {{#each cartItems}}
+<h1 class='view-titles'> Welcome to your Bar</h1>
 
-        <div class="card">
-            <div class="cocktail-name">
-                <div>
-                    <h1 class="card-heading">{{this.strDrink}}</h1>
-                </div>
-            </div>
-            
-            <!-- Section of the card that holds the image, button, and recipe -->
-            <div class="cocktail-ingredients">
-                <div class="cocktail-image">
-                    <img src="{{this.strDrinkThumb}}" alt="{{this.strDrink}}">
-                </div>
-                <h2 class="card-heading">Ingredients</h2>
-                <ul class="list-group list-group-flush">
-                    <!-- Iterate over ingredients and measures -->
-                    {{#each this}}
-                        {{#if (and (startsWith @key "strIngredient") (this ../this))}}
-                            {{#if (this ../this)}}
-                                <li class="list-group-item">{{lookup ../this @key}} {{lookup ../this (replace @key "Ingredient" "Measure")}}</li>
-                            {{/if}}
-                        {{/if}}
-                    {{/each}}
-                </ul>
-                <p class="recipe">Recipe: {{this.strInstructions}}</p>
-
-                <!-- Removing item from bar cart -->
-                <button class="remove-btn btn btn-danger" data-drink-id="{{this.id}}">Remove from Bar</button>
-            </div>
+{{#if none}}
+<p>Your bar is empty!</p>
+{{/if}}
+{{#each recipes as |recipe| }}
+<div class="card">
+    <div class="cocktail-name">
+        <div>
+                <h1 class="card-heading">{{recipe.strDrink}}</h1>
         </div>
-    {{/each}}
-</body>
+    </div>
+
+    <!-- section of the card that holds the image, button, and recipe -->
+    <div class="cocktail-ingredients">
+        <div class="cocktail-image">
+            <img src="/images/martini_glass.jpeg" alt="{{this.strDrink}}">
+        </div>
+
+        <h2 class="card-heading">Ingredients</h2>
+        <ul class="list-group list-group-flush">
+            <!-- Iterate over ingredients and measures -->
+            {{#each recipe.ingredients as |ingredient|}}
+            <li class="list-group-item align-amounts-right">{{ingredient.name}}{{#if
+                ingredient.recipes_ingredients.amount}}:{{/if}} <span
+                    class="amounts">{{ingredient.recipes_ingredients.amount}}</span></li>
+            {{/each}}
+        </ul>
+
+        <h2 class="card-heading">Recipe</h2>
+        <p class="recipe">{{recipe.description}}</p>
+        <button class="add-to-cart-btn remove-complete-from-cart red" data-id="{{recipe.id}}">Remove From Bar</button>
+    </div>
+
+    <!-- section of the page that will hold the star rating bar -->
+
+    <div>
+
+    </div>
+
+</div>
+
+{{/each}}
+<script src="/js/cart.js"></script>
