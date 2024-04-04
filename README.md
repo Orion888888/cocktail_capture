@@ -10,11 +10,15 @@ As a cocktail enthusiast, I want an app that allows me to share my coktail recip
 * Handlebars
 * Node.js 
 * Axios
+* Tailwind CSS
+* Lint? 
+* Sequelize 
 
 ## Installation Instructions
 1. Clone the repository onto your local machine using terminal 
 2. Run the command npm install to install all required packages for this application 
 3. 
+
 ## Demo 
 
 ## License 
