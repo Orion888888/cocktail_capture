@@ -1,14 +1,37 @@
 const router = require('express').Router();
-const { Users, Recipes, Liked_recipes, Ingredients, Recipes_ingredients } = require('../models');
+const { Users, Recipes, Liked_recipes, Ingredients, Recipes_ingredients, Shopping_list_recipes, Shopping_list } = require('../models');
 const withAuth = require('../utils/auth');
 
 //Adding to Bar via my cart
 router.get("/cart", withAuth, async (req, res) => {
   try {
-      res.render('cart');
+    console.log('hello');
+      // Get all recipes created by logged in user
+      const response = await Shopping_list.findOne({where: {user_id: req.session.user_id}});
+      const data = response.get({ plain: true });
+      console.log(data);
+      const cartId = data.id;
+
+      const recipesData = await Shopping_list_recipes.findAll({
+        // attributes: ['id', 'strDrink', 'strDrinkThumb', 'description', 'date_created'],
+        include: Recipes,
+        //  include: [{ model: Liked_recipes, attributes: ['star_value'] }],
+        order: [['id', 'DESC']],
+        where: { shopping_list_id: cartId }
+         });
+    
+        // Pass serialized data and session flag into template
+        const recipes = recipesData.map((recipe) => recipe.get({ plain: true }));
+         console.log(recipes);
+        // for (list of recipes) {
+        //   console.log(list.ingredients);
+        // };
+        
+      // res.render('cart');
   } catch (err) {
       res.status(500).json(err);
   }
+
 });
 
 
