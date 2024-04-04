@@ -16,7 +16,7 @@
             <ul>
                 <li>
                     {{!-- <img class="" src="/images/drinks_nav_image.jpeg" alt="..."> --}}
-
+                    {{#if logged_in}}
                     <a href="/profile"><button class="nav-button" id="profile">Profile</button></a>
 
                     <a href="/menu"><button class="nav-button" id="menu">Menu</button></a>
@@ -25,8 +25,12 @@
 
                     <a href="/liked"><button class="nav-button" id="liked">Top-Shelf</button></a>
 
-                    {{#if logged_in}}
                     <p id="logout" class="nav-button">Logout</p>
+                    
+                    {{else}}
+                    <a href="/signup"><button class="nav-button" id="signup">Sign Up</button></a>
+
+                    <a href="/login"><button class="nav-button" id="login">Login</button></a>
                     {{/if}}
                 </li>
             </ul>
