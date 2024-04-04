@@ -1,13 +1,16 @@
-<h1 class='view-titles'> Welcome to your Bar</h1>
+<h1 class='view-titles'>Welcome to your Bar</h1>
 
 {{#if none}}
 <p>Your bar is empty!</p>
+<p>Add recipes from your profile.</p>
 {{/if}}
 {{#each recipes as |recipe| }}
 <div class="card">
     <div class="cocktail-name">
         <div>
+             <a href="/profile/update/{{recipe.id}}">
                 <h1 class="card-heading">{{recipe.strDrink}}</h1>
+                </a>
         </div>
     </div>
 

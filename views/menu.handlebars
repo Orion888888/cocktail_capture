@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <script src="https://cdn.tailwindcss.com"></script>
 
+<h1 class='view-titles'> Inspiration Menu</h1>
+<!--
 <label class="relative block">
                         <button class="sr-only">Search</button>
                         <span class="absolute inset-y-0 left-0 flex items-center pl-2">
@@ -9,7 +11,7 @@
                             class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm"
                             placeholder="Search by Ingredient" type="text" name="search" />
                     </label>
-
+-->
 {{#each myDrinkArray}}
 <div class="card">
     <div class="cocktail-name">
@@ -35,10 +37,11 @@
             {{/if}}
             {{/each}}
         </ul>
-        <p class="recipe">Recipe: {{this.strInstructions}}</p>
+        <h2 class="card-heading">Recipe</h2>
+        <p class="recipe">{{this.strInstructions}}</p>
 
     <div class="flex items-center">
-        <button class="add-to-cart-btn" data-id="{{this.idDrink}}">Add To My Bar</button>
+       <!-- <button class="add-to-cart-btn" data-id="{{this.idDrink}}">Add To My Bar</button>  -->
         
         <div class="like-btn flex items-center justify-center w-12 h-12 rounded-full bg-gray-200 cursor-pointer transition duration-300 ease-in-out">
             <i class="fas fa-thumbs-up text-gray-500 text-xl" data-id="{{this.idDrink}}">
@@ -46,7 +49,9 @@
         </div>
         </div>
     </div>
+<div>
 
+</div>
     <!-- section of the page that will hold the star rating bar -->
 
     {{!-- <div class="rating-bar">
@@ -82,4 +87,4 @@
 </div>
 {{!-- <script src="./js/cart.js"></script> --}}
 {{/each}}
-<script src="./js/liked.js"></script>
+<script src="/js/liked.js"></script>

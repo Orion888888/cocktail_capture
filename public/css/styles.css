@@ -27,6 +27,11 @@ body {
     margin: 10px auto;
 }
 
+.main-title {
+    font-size: 3em;
+    font-weight: bold;
+}
+
 .view-titles {
     font-size: 2em;
     font-weight: bold;
