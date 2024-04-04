@@ -52,6 +52,3 @@ for (let cockTailRecipeIdOn = 0; cockTailRecipeIdOn < likedBtnArray.length; cock
 // document.querySelector('.like-btn').addEventListener('click', likeHandler);
 
 // target.getAttribute("data-id")
-
-}
-
