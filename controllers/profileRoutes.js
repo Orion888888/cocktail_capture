@@ -2,6 +2,18 @@ const router = require('express').Router();
 const { Users, Recipes, Liked_recipes, Ingredients, Recipes_ingredients } = require('../models');
 const withAuth = require('../utils/auth');
 
+//Adding to Bar via my cart
+router.get("/cart", withAuth, async (req, res) => {
+  try {
+      res.render('cart');
+  } catch (err) {
+      res.status(500).json(err);
+  }
+});
+
+
+//Shopping list button 
+
 // Default profile route showing most recently created recipes
 router.get('/', withAuth, async (req, res) => {
     try {

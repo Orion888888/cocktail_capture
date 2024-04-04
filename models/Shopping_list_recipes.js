@@ -17,7 +17,7 @@ Shopping_list_recipes.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'posts',
+    modelName: 'shopping_list_recipes',
   }
 );
 
