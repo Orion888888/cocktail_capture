@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const axios = require('axios');
-const { Recipes, Recipes_ingredients } = require('../../models');
+const { Recipes, Recipes_ingredients, Liked_recipes } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 //api request to create a new recipe
@@ -40,10 +40,12 @@ router.get('/liked', withAuth, async (req, res) => {
   try {
     // Fetch the liked recipes associated with the current user
     const userId = req.session.user_id;
-    const likedRecipes = await LikedRecipe.findAll({ where: { userId } });
+    const likedRecipes = await Liked_recipes.findAll({ where: { user_id: userId } });
     
+    const recipes = likedRecipes.map((recipe) => recipe.get({ plain: true }));
+    console.log(recipes);
     // Render the liked.handlebars page with the liked recipes
-    res.render('liked', { likedRecipes });
+    res.render('liked', { recipes });
   } catch (err) {
     res.status(500).json(err);
   }
@@ -56,15 +58,15 @@ router.post('/liked/:drinkId', withAuth, async (req, res) => {
     const userId = req.session.user_id;
 
     // Check if the recipe is already in the user's liked recipes
-    const alreadyLiked = await LikedRecipe.findOne({ where: { userId, recipeId: drinkId } });
-    if (alreadyLiked) {
-      return res.status(400).json({ message: 'Recipe already liked' });
-    }
+    // const alreadyLiked = await Liked_recipes.findOne({ where: { user_id: userId, recipes_id: drinkId } });
+    // if (alreadyLiked) {
+    //   return res.status(400).json({ message: 'Recipe already liked' });
+    // }
 
-    // Add the recipe to the user's liked recipes
-    await LikedRecipe.create({ userId, recipeId: drinkId });
+    // Adding the recipe to the user's liked recipes
+    const likedRecipe = await Liked_recipes.create({ user_id: userId, recipes_id: drinkId }); // Ensure your model attributes match your database schema
     
-    res.status(200).json({ message: 'Recipe added to liked recipes successfully' });
+    res.status(200).json(likedRecipe);
   } catch (err) {
     res.status(500).json(err);
   }

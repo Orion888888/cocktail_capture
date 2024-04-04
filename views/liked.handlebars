@@ -1,9 +1,23 @@
-    <h1>Liked Drinks</h1>
-    <ul>
-        {{#each likedDrinks}}
-            <li>{{this.name}}</li>
-            <!-- Add other properties as needed -->
-        {{/each}}
-    </ul>
-</body>
-</html>
+<h1>Liked Recipes</h1>
+<div class="liked-recipes">
+    {{#each likedRecipes}}
+    <form id="recipe-form-{{this.id}}">
+        <div>
+            <label for="cocktail-name">Cocktail Name: </label>
+            <input name="cocktail-name" type="text" id="cocktail-name" value="{{this.cocktail_name}}" />
+        </div>
+
+        <div>
+            <label for="description">Recipe: </label>
+            <input type="text" id="description" value="{{this.recipe}}" />
+        </div>
+
+        <!-- Add code for displaying ingredients here if needed -->
+        <div id="ingredient-form">
+                
+        </div>
+    </form>
+    {{/each}}
+</div>
+
+<script src="/js/liked.js"></script>

@@ -1,21 +1,32 @@
-{{#if deleted}}
-<p>RECIPE WAS DELETED</p>
-{{/if}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
 
-
-{{#if none}}
-<p>You have not created any recipes yet!</p>
-{{/if}}
+<h1 class='view-titles'>Your Profile Recipes</h1>
 
 <nav class="nav-bar">
     <a href="/profile/create"><button class="nav-button" id="profile">Add New Recipe</button></a>
 </nav>
 
+
+{{#if none}}
+<br>
+<p>No recipes can be found here.</p>
+<p>Check your bar!</p>
+{{/if}}
+
+
+{{#if deleted}}
+<br>
+<p>RECIPE WAS DELETED</p>
+{{/if}}
+
 {{#each recipes as |recipe| }}
 <div class="card">
     <div class="cocktail-name">
         <div>
-            <a href="/profile/update/{{recipe.id}}"><h1 class="card-heading">{{recipe.strDrink}}</h1></a>
+            <a href="/profile/update/{{recipe.id}}">
+                <h1 class="card-heading">{{recipe.strDrink}}</h1>
+            </a>
         </div>
     </div>
 
@@ -29,49 +40,32 @@
         <ul class="list-group list-group-flush">
             <!-- Iterate over ingredients and measures -->
             {{#each recipe.ingredients as |ingredient|}}
-            <li class="list-group-item align-amounts-right">{{ingredient.name}}{{#if ingredient.recipes_ingredients.amount}}:{{/if}} <span class="amounts">{{ingredient.recipes_ingredients.amount}}</span></li>
+            <li class="list-group-item align-amounts-right">{{ingredient.name}}{{#if
+                ingredient.recipes_ingredients.amount}}:{{/if}} <span
+                    class="amounts">{{ingredient.recipes_ingredients.amount}}</span></li>
             {{/each}}
         </ul>
 
         <h2 class="card-heading">Recipe</h2>
         <p class="recipe">{{recipe.description}}</p>
-        <button class="add-to-cart-btn" data-id="{{recipe.id}}" >Add To My
-            Bar</button>
-    </div>
-
-    <!-- section of the page that will hold the star rating bar -->
-
-    <div class="rating-bar">
         <div class="flex items-center">
-            <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor" viewBox="0 0 22 20">
-                <path
-                    d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-            </svg>
-            <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor" viewBox="0 0 22 20">
-                <path
-                    d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-            </svg>
-            <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor" viewBox="0 0 22 20">
-                <path
-                    d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-            </svg>
-            <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor" viewBox="0 0 22 20">
-                <path
-                    d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-            </svg>
-            <svg class="w-4 h-4 ms-1 text-gray-300 dark:text-gray-500" aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                <path
-                    d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-            </svg>
+            <button class="add-to-cart-btn add-to-bar" data-id="{{recipe.id}}">Add To My Bar</button>
+
+            <div
+                class="like-btn flex items-center justify-center w-12 h-12 rounded-full bg-gray-200 cursor-pointer transition duration-300 ease-in-out">
+                <i class="fas fa-thumbs-up text-gray-500 text-xl" data-id="{{recipe.id}}">
+                </i>
+            </div>
         </div>
     </div>
 
-</div>
 
-<script src="./js/cart.js"></script>
+
+    <div>
+    </div>
+
+</div>
 {{/each}}
+
+<script src="/js/liked.js"></script>
+<script src="/js/cart.js"></script>
