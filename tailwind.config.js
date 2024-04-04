@@ -17,6 +17,6 @@ module.exports = {
     './views/menu.handlebars',
     './views/create.handlebars',
     './views/updatedelete.handlebars',
-    './views/cart.handlebars'
+    './views/liked.handlebars'
   ],
 }
