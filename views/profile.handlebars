@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+
 {{#if deleted}}
 <p>RECIPE WAS DELETED</p>
 {{/if}}
@@ -35,8 +38,14 @@
 
         <h2 class="card-heading">Recipe</h2>
         <p class="recipe">{{recipe.description}}</p>
-        <button class="add-to-cart-btn" data-id="{{recipe.id}}" >Add To My
-            Bar</button>
+    <div class="flex items-center">
+        <button class="add-to-cart-btn" data-id="{{recipe.id}}">Add To My Bar</button>
+        
+        <div class="like-btn flex items-center justify-center w-12 h-12 rounded-full bg-gray-200 cursor-pointer transition duration-300 ease-in-out">
+            <i class="fas fa-thumbs-up text-gray-500 text-xl" data-id="{{recipe.id}}">
+            </i>
+        </div>
+        </div>
     </div>
 
     <!-- section of the page that will hold the star rating bar -->
@@ -72,6 +81,7 @@
     </div>
 
 </div>
-
-<script src="./js/cart.js"></script>
 {{/each}}
+
+<script src="./js/liked.js"></script>
+<script src="./js/cart.js"></script>
