@@ -20,6 +20,7 @@ As a cocktail enthusiast, I want an app that allows me to share my coktail recip
 3. 
 
 ## Demo 
+![Cocktail Capture](/public/images/Cocktail%20Capture.gif)
 
 ## License 
 MIT 
