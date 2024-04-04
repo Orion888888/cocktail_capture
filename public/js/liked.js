@@ -1,7 +1,12 @@
-const likeHandler = (event) => {
-    const { target } = event
-    const drinkId = target.getAttribute('')
-}
-document.querySelector('.like-btn').addEventListener('click', likeHandler);
+const likedBtnArray = document.querySelectorAll('.like-btn');
 
-target.getAttribute("data-id")
+const likeHandler = (cockTailRecipeIdOnParam) => {
+    likedBtnArray[cockTailRecipeIdOnParam].setAttribute("style", "display: none;");
+
+    // TODO : We can add the remaining logic here to send the liked cocktail reciepe id
+    // into the database of liked recipes via an api.
+}
+
+for (let cockTailRecipeIdOn = 0; cockTailRecipeIdOn < likedBtnArray.length; cockTailRecipeIdOn++) {
+    likedBtnArray[cockTailRecipeIdOn].addEventListener('click', () => likeHandler(cockTailRecipeIdOn));
+}
