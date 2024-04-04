@@ -1,18 +1,3 @@
-// function createRecipeCard(drinkId) {
-//     // Create card element
-//     const card = document.createElement('div');
-//     card.className = 'recipe-form';
-
-//     // fetch or generate the recipe details
-//     card.innerHTML = `
-//         <h3>Recipe ${drinkId}</h3>
-//         <p>Description of the recipe...</p>
-//     `;
-
-//     // Return the card element
-//     return card;
-// }
-
 const likedBtnArray = document.querySelectorAll('.like-btn');
 
 const likeHandler = (cockTailRecipeIdOnParam) => {
@@ -24,6 +9,7 @@ const likeHandler = (cockTailRecipeIdOnParam) => {
 
 for (let cockTailRecipeIdOn = 0; cockTailRecipeIdOn < likedBtnArray.length; cockTailRecipeIdOn++) {
     likedBtnArray[cockTailRecipeIdOn].addEventListener('click', () => likeHandler(cockTailRecipeIdOn));
+
 }
 
 
@@ -66,3 +52,6 @@ for (let cockTailRecipeIdOn = 0; cockTailRecipeIdOn < likedBtnArray.length; cock
 // document.querySelector('.like-btn').addEventListener('click', likeHandler);
 
 // target.getAttribute("data-id")
+
+}
+
